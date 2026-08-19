@@ -1,0 +1,410 @@
+{"input": "0", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[null]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[\"\"]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[\"@\\u00da\\u0006\\uda5b\\ude12\", false]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\uda09\\udcf84\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[false]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[null]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[null, null]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "false", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "true", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "0.0", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "-6.50235106972541e+16", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u0014V\\u00f3Q\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u0014V\\u00f3Q\": {}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[0]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00e7\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00e7\": [-9.018073743893485e-292, \"\\u00f1\\u008f\\r.\", null, 20776919774]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\udb8b\\uddc7\\u0088\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\udb8b\\uddc7\\u0088\": {}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[0]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"f\\u00e4\\uda46\\ude68\\u00e7\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"f\\u00e4\\uda46\\ude68\\u00e7\": -39386559708, \"\\u00ab\\u6175\\u00e9\\ud93a\\uddf6\": -3331, \"\\u00fa\\u0089\\u0092\\u00ea\": null, \"\\u00b5\": -5.26891056460746e+73}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"f\\u00e4\\uda46\\ude68\\u00e7\": -39386559708, \"\\u00ab\\u6175\\u00e9\\ud93a\\uddf6\": -3331, \"\\u00fa\\u0089\\u0092\\u00ea\": null, \"\\u00b5\": null}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u009b\\u0006_\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[0]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"7\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"7\": []}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\ud895\\uddcd\\u0015\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\ud895\\uddcd\\u0015\": [354, -156558212, \"\\ud83d\\ude0d\", false]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\ud895\\uddcd\\u0015\": [-156558212, -156558212, \"\\ud83d\\ude0d\", false]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[false, {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[false, false]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[12302955, \"\\u0010\\udaa2\\ude13\\u001a\\u0007\\u00d0\"]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[12302955, 12302955]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u0084\\u00f3\": true, \"\\ud8b8\\udf3d\\u00e51B\": \"\\u00ff\", \"\\u00d1\": 19250, \"\\u00c2\\u0082\\u00e1-\": false}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u0084\\u00f3\": true, \"\\ud8b8\\udf3d\\u00e51B\": 0, \"\\u00d1\": 19250, \"\\u00c2\\u0082\\u00e1-\": false}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00a3\\u00c1\\udb04\\uddc3\\ud894\\udc5a\": false, \"[\\u00f5x\\uda71\\udd80\": [[false, \"\\u0019\\t\\b\", -169003, \"\\ud9cc\\udeaa\\ud820\\udf24\\u00b0\\ud9de\\ude47\\u0099_\"], [-1.2532218324643431e+100]]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00a3\\u00c1\\udb04\\uddc3\\ud894\\udc5a\": false, \"[\\u00f5x\\uda71\\udd80\": false}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"[\\u00f5x\\uda71\\udd80\": false, \"0\": []}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"[\\u00f5x\\uda71\\udd80\": [], \"0\": []}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\uda90\\uddf5\": {\"\\u0007x:\\ud8b6\\udea0\": \"\\u00d6\\udae1\\udfc3\", \"\\u0018\\u000b\": [true, \"F\\u00a7\\u0013\", null, \"D\\u00c5\"], \"G\\u00d0\": \"\\udb41\\udc1b/\\u00f3U\\u00f8\\ud943\\uddcf\"}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\uda90\\uddf5\": {\"D\\u00c5\": \"\\u00d6\\udae1\\udfc3\", \"\\u0018\\u000b\": [true, \"F\\u00a7\\u0013\", null, \"D\\u00c5\"], \"G\\u00d0\": \"\\udb41\\udc1b/\\u00f3U\\u00f8\\ud943\\uddcf\"}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\uda90\\uddf5\": {\"D\\u00c5\": \"\\u00d6\\udae1\\udfc3\", \"\\u0018\\u000b\": \"\\u00d6\\udae1\\udfc3\", \"G\\u00d0\": \"\\udb41\\udc1b/\\u00f3U\\u00f8\\ud943\\uddcf\"}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\uda90\\uddf5\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[\"\\u00f7\\u009e\\u00c8MZ\\ud9c0\\ude1e\", {}, {}, {\"\\u001b\": null, \"l4\\n\": true, \"\\u008f\": \"m\", \"\\u001d\\u00bem\": null}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[\"\\u00f7\\u009e\\u00c8MZ\\ud9c0\\ude1e\", {}, {}, {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[\"\\u00f7\\u009e\\u00c8MZ\\ud9c0\\ude1e\", {}, {}, \"\\u00f7\\u009e\\u00c8MZ\\ud9c0\\ude1e\"]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[\"\\u00f7\\u009e\\u00c8MZ\\ud9c0\\ude1e\", {}, \"\\u00f7\\u009e\\u00c8MZ\\ud9c0\\ude1e\", {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00b2>R\\u00c8\": [], \"\\u00bb\": {\"\\udb77\\udc49\": {\"\\u00e9\\u0089\": {\"\\u00ed[%\\u00d4\": \"\", \"\\u0013H\\u00b5\\u0092\": false}, \"\\u00f5u\": {\"\\ud92e\\udfab\\ud906\\udcbbEl\": null, \"{\\u00d7\\uda1e\\udfff\": null, \"\\u0095t\": -3.413319233431424e+16, \"\\u0000\\u00b3\\u00e7\\udb17\\udc56\": true}, \"[{\": [], \"$xA\": {\"?g\\ud953\\udd69\\u0017\": -53117.25650307269, \".\\u00cc\\u00a0L\": null}}, \")\": [], \"\\u0006\": 597294181076967, \"u\\u0018\\u00b7\": {\"\\\\\\u00fc1\\u008a\": {}, \"a\\u00f2\\udb3b\\uded9\\u0019\": false, \"\\u0019\": null}}, \"\\udb2a\\udd63\": [\"\\udbe4\\uddee\\udb22\\udd60\\u00d7#Q\"], \"0\": []}", "outcome": "reject", "exit_code": 2, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00b2>R\\u00c8\": [], \"\\u00bb\": {\"\\udb77\\udc49\": {\"\\u00e9\\u0089\": {\"\\u00ed[%\\u00d4\": \"\", \"\\u0013H\\u00b5\\u0092\": false}, \"\\u00f5u\": {\"\\ud92e\\udfab\\ud906\\udcbbEl\": null, \"{\\u00d7\\uda1e\\udfff\": null, \"\\u0095t\": -53117.25650307269, \"\\u0000\\u00b3\\u00e7\\udb17\\udc56\": true}, \"[{\": [], \"$xA\": {\"?g\\ud953\\udd69\\u0017\": -53117.25650307269, \".\\u00cc\\u00a0L\": null}}, \")\": [], \"\\u0006\": 597294181076967, \"u\\u0018\\u00b7\": {\"\\\\\\u00fc1\\u008a\": {}, \"a\\u00f2\\udb3b\\uded9\\u0019\": false, \"\\u0019\": null}}, \"\\udb2a\\udd63\": [\"\\udbe4\\uddee\\udb22\\udd60\\u00d7#Q\"], \"0\": []}", "outcome": "reject", "exit_code": 2, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00b2>R\\u00c8\": [], \"\\u00bb\": {\"\\udb77\\udc49\": {\"\\u00e9\\u0089\": {\"\\u00ed[%\\u00d4\": \"\", \"\\u0013H\\u00b5\\u0092\": false}, \"\\u00f5u\": {\"\\ud92e\\udfab\\ud906\\udcbbEl\": null, \"{\\u00d7\\uda1e\\udfff\": null, \"\\u0095t\": -53117.25650307269, \"\\u0000\\u00b3\\u00e7\\udb17\\udc56\": false}, \"[{\": [], \"$xA\": {\"?g\\ud953\\udd69\\u0017\": -53117.25650307269, \".\\u00cc\\u00a0L\": null}}, \")\": [], \"\\u0006\": 597294181076967, \"u\\u0018\\u00b7\": {\"\\\\\\u00fc1\\u008a\": {}, \"a\\u00f2\\udb3b\\uded9\\u0019\": false, \"\\u0019\": null}}, \"\\udb2a\\udd63\": [\"\\udbe4\\uddee\\udb22\\udd60\\u00d7#Q\"], \"0\": []}", "outcome": "reject", "exit_code": 2, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00b2>R\\u00c8\": [], \"\\u00bb\": {\"\\udb77\\udc49\": {\"\\u00e9\\u0089\": {\"\\u00ed[%\\u00d4\": \"\", \"\\u0013H\\u00b5\\u0092\": false}, \"\\u00f5u\": {\"\\ud92e\\udfab\\ud906\\udcbbEl\": null, \"{\\u00d7\\uda1e\\udfff\": null, \"\\u0095t\": -53117.25650307269, \"\\u0000\\u00b3\\u00e7\\udb17\\udc56\": false}, \"[{\": [], \"$xA\": null}, \")\": [], \"\\u0006\": 597294181076967, \"u\\u0018\\u00b7\": {\"\\\\\\u00fc1\\u008a\": {}, \"a\\u00f2\\udb3b\\uded9\\u0019\": false, \"\\u0019\": null}}, \"\\udb2a\\udd63\": [\"\\udbe4\\uddee\\udb22\\udd60\\u00d7#Q\"], \"0\": []}", "outcome": "reject", "exit_code": 2, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00b2>R\\u00c8\": [], \"\\u00bb\": {\"\\udb77\\udc49\": {\"\\u00e9\\u0089\": {\"\\u00ed[%\\u00d4\": \"\", \"\\u0013H\\u00b5\\u0092\": false}, \"\\u0006\": {\"\\ud92e\\udfab\\ud906\\udcbbEl\": null, \"{\\u00d7\\uda1e\\udfff\": null, \"\\u0095t\": -53117.25650307269, \"\\u0000\\u00b3\\u00e7\\udb17\\udc56\": false}, \"[{\": [], \"$xA\": null}, \")\": [], \"\\u0006\": 597294181076967, \"u\\u0018\\u00b7\": {\"\\\\\\u00fc1\\u008a\": {}, \"a\\u00f2\\udb3b\\uded9\\u0019\": false, \"\\u0019\": null}}, \"\\udb2a\\udd63\": [\"\\udbe4\\uddee\\udb22\\udd60\\u00d7#Q\"], \"0\": []}", "outcome": "reject", "exit_code": 2, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00b2>R\\u00c8\": [], \"\\u00bb\": {\"\\udb77\\udc49\": {\"\\u00e9\\u0089\": {\"\\u00ed[%\\u00d4\": \"\", \"\\u0013H\\u00b5\\u0092\": false}, \"\\u0006\": {\"\\ud92e\\udfab\\ud906\\udcbbEl\": null, \"{\\u00d7\\uda1e\\udfff\": null, \"\\u0095t\": -53117.25650307269, \"\\u0000\\u00b3\\u00e7\\udb17\\udc56\": false}, \"[{\": [], \"$xA\": null}, \")\": [], \"\\u0006\": 597294181076967, \"u\\u0018\\u00b7\": {\"\\\\\\u00fc1\\u008a\": [], \"a\\u00f2\\udb3b\\uded9\\u0019\": false, \"\\u0019\": null}}, \"\\udb2a\\udd63\": [\"\\udbe4\\uddee\\udb22\\udd60\\u00d7#Q\"], \"0\": []}", "outcome": "reject", "exit_code": 2, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00b2>R\\u00c8\": [], \"\\u00bb\": {\"\\udb77\\udc49\": {\"\\u00e9\\u0089\": {\"\\u00ed[%\\u00d4\": \"\", \"\\u0013H\\u00b5\\u0092\": false}, \"\\u0006\": {\"\\ud92e\\udfab\\ud906\\udcbbEl\": null, \"{\\u00d7\\uda1e\\udfff\": null, \"\\u0095t\": -53117.25650307269, \"\\u0000\\u00b3\\u00e7\\udb17\\udc56\": false}, \"[{\": [], \"$xA\": null}, \")\": [], \"\\u0006\": 597294181076967, \"u\\u0018\\u00b7\": {\"\\\\\\u00fc1\\u008a\": false, \"a\\u00f2\\udb3b\\uded9\\u0019\": false, \"\\u0019\": null}}, \"\\udb2a\\udd63\": [\"\\udbe4\\uddee\\udb22\\udd60\\u00d7#Q\"], \"0\": []}", "outcome": "reject", "exit_code": 2, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"\\u00fc%Wz\": 6.101436353475998e-186, \"\\udae6\\udf0e\\u0095\": true, \"\\udb4d\\udc3c\": -14781, \"\\udb2e\\udfc1d\": \"\\ud80a\\udc0e\\u00dc\"}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"\\u00fc%Wz\": 6.101436353475998e-186, \"\\udae6\\udf0e\\u0095\": \"\\ud80a\\udc0e\\u00dc\", \"\\udb4d\\udc3c\": -14781, \"\\udb2e\\udfc1d\": \"\\ud80a\\udc0e\\u00dc\"}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"\\u00fc%Wz\": 6.101436353475998e-186, \"\\udae6\\udf0e\\u0095\": \"\\ud80a\\udc0e\\u00dc\", \"0\": 0}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"\\u00fc%Wz\": \"\", \"\\udae6\\udf0e\\u0095\": \"\\ud80a\\udc0e\\u00dc\", \"0\": 0}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"\\u00fc%Wz\": \"\", \"\\udae6\\udf0e\\u0095\": \"\", \"0\": 0}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"\\u00fc%Wz\": \"\", \"\\udae6\\udf0e\\u0095\": \"\", \"0\": \"\"}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {\"\\u00fc%Wz\": \"\", \"\\udae6\\udf0e\\u0095\": \"\", \"0\": \"\"}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\ud862\\udf34\": -2.664601216950121e+16}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00cc\": {\"\\u00b7\": null, \"\\u0013\\udabe\\udd6e\": null, \"\\u0000\\u0091\\u0099\": \"\\udabe\\ude6a\\u00eeg\\u00d7\\u007f\\u00e7\", \"\\u009a\\u00d2\\ud8f9\\udc77*\": 391943250477123552690192198402048}, \"\\u00dd\\ub816\\ud8d1\\uddc4\": [4800773220], \"\\u0012\": [8.89401778727473e-189, -233305863141147, \"\"], \"\\u00fb\\u00e6\\u00e1\\u00fa\": 5.358897826777963e+16}", "outcome": "reject", "exit_code": 2, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00cc\": {\"\\u00b7\": null, \"\\u0013\\udabe\\udd6e\": null, \"\\u0000\\u0091\\u0099\": \"\\udabe\\ude6a\\u00eeg\\u00d7\\u007f\\u00e7\", \"\\u009a\\u00d2\\ud8f9\\udc77*\": 391943250477123552690192198402048}, \"\\u00dd\\ub816\\ud8d1\\uddc4\": [-233305863141147], \"\\u0012\": [8.89401778727473e-189, -233305863141147, \"\"], \"\\u00fb\\u00e6\\u00e1\\u00fa\": 5.358897826777963e+16}", "outcome": "reject", "exit_code": 2, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00cc\": {\"\\u00b7\": null, \"\\u0013\\udabe\\udd6e\": null, \"\\u0000\\u0091\\u0099\": \"\\udabe\\ude6a\\u00eeg\\u00d7\\u007f\\u00e7\", \"\\u009a\\u00d2\\ud8f9\\udc77*\": 391943250477123552690192198402048}, \"\\u00dd\\ub816\\ud8d1\\uddc4\": [-233305863141147], \"\\u0012\": [8.89401778727473e-189, -233305863141147, \"\"], \"\\u00fb\\u00e6\\u00e1\\u00fa\": [-233305863141147]}", "outcome": "reject", "exit_code": 2, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00cc\": {\"\\u00cc\": null, \"\\u00b7\": null, \"\\u0013\\udabe\\udd6e\": null, \"\\u0000\\u0091\\u0099\": \"\\udabe\\ude6a\\u00eeg\\u00d7\\u007f\\u00e7\"}}", "outcome": "reject", "exit_code": 2, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00cc\": {\"\\u00cc\": null, \"\\u00b7\": null, \"0\": 0}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00cc\": {\"\\u00cc\": null, \"0\": 0}, \"\\u00b7\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00cc\": 0, \"\\u00b7\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"\\u00e7\\u008c\\ud8fe\\udd2a!\": false, \"\\u00e8\": \"\"}, [\"\\u009c|\\u00db\\ud912\\uddc6\\u00b0\\uda1b\\udc47\", null, 9034, \"\\u00fe\\ud831\\ude77\\uda4f\\udec94\"], {\"\\u00f2\": 9577410829, \"\\u0002|\\u00f2\\u0001\": -19295231889142}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"\\u00e7\\u008c\\ud8fe\\udd2a!\": \"\", \"\\u00e8\": \"\"}, [\"\\u009c|\\u00db\\ud912\\uddc6\\u00b0\\uda1b\\udc47\", null, 9034, \"\\u00fe\\ud831\\ude77\\uda4f\\udec94\"], {\"\\u00f2\": 9577410829, \"\\u0002|\\u00f2\\u0001\": -19295231889142}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"\\u00e7\\u008c\\ud8fe\\udd2a!\": \"\", \"\\u00e8\": \"\"}, [\"\\u009c|\\u00db\\ud912\\uddc6\\u00b0\\uda1b\\udc47\", null, 9034, \"\\u00fe\\ud831\\ude77\\uda4f\\udec94\"], {\"0\": 0}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"\\u00e7\\u008c\\ud8fe\\udd2a!\": \"\", \"\\u00e8\": \"\"}, [\"\\u009c|\\u00db\\ud912\\uddc6\\u00b0\\uda1b\\udc47\", null, 0, \"\\u00fe\\ud831\\ude77\\uda4f\\udec94\"], {\"0\": 0}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {\"\\u00e7\\u008c\\ud8fe\\udd2a!\": \"\", \"\\u00e8\": \"\"}, [\"\\u009c|\\u00db\\ud912\\uddc6\\u00b0\\uda1b\\udc47\", null, 0, \"\\u00fe\\ud831\\ude77\\uda4f\\udec94\"], {\"0\": 0}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {\"\\u00e7\\u008c\\ud8fe\\udd2a!\": \"\", \"\\u00e8\": \"\"}, [\"\\u009c|\\u00db\\ud912\\uddc6\\u00b0\\uda1b\\udc47\", \"\\u00fe\\ud831\\ude77\\uda4f\\udec94\", 0, \"\\u00fe\\ud831\\ude77\\uda4f\\udec94\"], {\"0\": 0}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {\"\\u00e7\\u008c\\ud8fe\\udd2a!\": \"\", \"0\": \"\"}, [\"\\u009c|\\u00db\\ud912\\uddc6\\u00b0\\uda1b\\udc47\", \"\\u00fe\\ud831\\ude77\\uda4f\\udec94\", 0, \"\\u00fe\\ud831\\ude77\\uda4f\\udec94\"], {\"0\": 0}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"\\ud85e\\udf2d\\u00cf\\u00ae\\ud918\\udce2\": [-3.349188656838943e+16, 561432, null, -4.438479930488602e+16], \"\\ud9fa\\udcc5\": {\"\\u00a66\\ud9fa\\udeaf\\ud85e\\ude5d\": null, \"\\u00a7k\\u00a1\\u00e7\": 2.0, \"\\u009d\": 95219, \"-\": 814}}, {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00a7k\\u00a1\\u00e7\": 2.0, \"\\u009d\": 95219, \"-\": 814}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00a7k\\u00a1\\u00e7\": 2.0, \"\\u009d\": 95219, \"-\": 814}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00a7k\\u00a1\\u00e7\": 2.0, \"\\u009d\": 95219, \"-\": 814}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00a7k\\u00a1\\u00e7\": 2.0, \"\\u009d\": 95219, \"-\": 814}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00a7k\\u00a1\\u00e7\": 814, \"\\u009d\": 95219, \"-\": 814}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"\\ud85e\\udf2d\\u00cf\\u00ae\\ud918\\udce2\": [-3.349188656838943e+16, 561432, null, -4.438479930488602e+16], \"\\ud9fa\\udcc5\": {\"\\u00a66\\ud9fa\\udeaf\\ud85e\\ude5d\": null, \"\\u00a7k\\u00a1\\u00e7\": 2.0, \"\\u009d\": 95219, \"-\": 814}}, {\"\\ud85e\\udf2d\\u00cf\\u00ae\\ud918\\udce2\": [-3.349188656838943e+16, 561432, null, -4.438479930488602e+16]}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[null, {\"\\u00b4\": -805084072, \"\\u00cc\\ud9bf\\udd7a\\\\\\u00e5\": \"\"}, [], -18997]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[null, {}, 0], {\"\\u00b4\": -805084072, \"\\u00cc\\ud9bf\\udd7a\\\\\\u00e5\": \"\"}, [], -18997]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[null, {\"\\u00b4\": -805084072, \"\\u00cc\\ud9bf\\udd7a\\\\\\u00e5\": \"\"}, 0], {\"\\u00b4\": -805084072, \"\\u00cc\\ud9bf\\udd7a\\\\\\u00e5\": \"\"}, [], -18997]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[0, {\"\\u00b4\": -805084072, \"\\u00cc\\ud9bf\\udd7a\\\\\\u00e5\": \"\"}, 0], {\"\\u00b4\": -805084072, \"\\u00cc\\ud9bf\\udd7a\\\\\\u00e5\": \"\"}, [], -18997]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[0, {\"\\u00b4\": -805084072, \"\\u00cc\\ud9bf\\udd7a\\\\\\u00e5\": \"\"}, \"\"], {\"\\u00b4\": -805084072, \"\\u00cc\\ud9bf\\udd7a\\\\\\u00e5\": \"\"}, [], -18997]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[0, {\"\\u00b4\": -805084072, \"\\u00cc\\ud9bf\\udd7a\\\\\\u00e5\": \"\"}, \"\"], {\"\\u00b4\": -805084072, \"\\u00cc\\ud9bf\\udd7a\\\\\\u00e5\": \"\"}, [], 3]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[0, {\"\\u00b4\": -805084072, \"\\u00cc\\ud9bf\\udd7a\\\\\\u00e5\": \"\"}, \"\"], {\"\\u00b4\": -805084072, \"\\u00cc\\ud9bf\\udd7a\\\\\\u00e5\": \"\\u00b4\"}, [], 3]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"0\\u00e2\": {\">\": -5157, \"\\u00af\\u00ee\\u0081\\u0000\": {\"\\ud84a\\udc88\\u00b1\\u00cc\\ud8c4\\udd1c\": 2.0, \"HOME\": null, \"bO\\u0093\\u00b1\": null, \"\\u0012\\u00e2\\ud89f\\uded9\": 426}, \"\\u00c8\\u009cf\\u000e\": {}, \"o\": false}, \".\": {\"\\udb0b\\ude06\": [\"\\u00e7\\u00ae\"], \"\\r\": [null], \"n\\u00c4\": {}, \"w\": null}, \"\\udb15\\udf79c\\u00ac[\": [], \"f\\u00ee\": [null, {}, null]}", "outcome": "reject", "exit_code": 2, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"0\\u00e2\": {\">\": -5157, \"\\u00af\\u00ee\\u0081\\u0000\": {\"\\ud84a\\udc88\\u00b1\\u00cc\\ud8c4\\udd1c\": 2.0, \"HOME\": null, \"bO\\u0093\\u00b1\": null, \"\\u0012\\u00e2\\ud89f\\uded9\": 426}, \"\\u00c8\\u009cf\\u000e\": {}, \"o\": false}, \".\": {\"\\udb0b\\ude06\": [\"\\u00e7\\u00ae\"], \"\\r\": [null], \"n\\u00c4\": null, \"w\": null}, \"\\udb15\\udf79c\\u00ac[\": [], \"f\\u00ee\": [null, {}, null]}", "outcome": "reject", "exit_code": 2, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"0\\u00e2\": {\">\": -5157, \"\\u00af\\u00ee\\u0081\\u0000\": {\"\\ud84a\\udc88\\u00b1\\u00cc\\ud8c4\\udd1c\": 2.0, \"HOME\": null, \"bO\\u0093\\u00b1\": null, \"\\u0012\\u00e2\\ud89f\\uded9\": 426}, \"\\u00c8\\u009cf\\u000e\": {}, \"o\": false}, \".\": {\"\\udb0b\\ude06\": [\"\\u00e7\\u00ae\"], \"\\r\": [\"\\u00e7\\u00ae\"], \"n\\u00c4\": null, \"w\": null}, \"\\udb15\\udf79c\\u00ac[\": [], \"f\\u00ee\": [null, {}, null]}", "outcome": "reject", "exit_code": 2, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"0\\u00e2\": {\">\": -5157, \"\\u00af\\u00ee\\u0081\\u0000\": {\"\\ud84a\\udc88\\u00b1\\u00cc\\ud8c4\\udd1c\": null, \"HOME\": null, \"bO\\u0093\\u00b1\": null, \"\\u0012\\u00e2\\ud89f\\uded9\": 426}, \"\\u00c8\\u009cf\\u000e\": {}, \"o\": false}, \".\": {\"\\udb0b\\ude06\": [\"\\u00e7\\u00ae\"], \"\\r\": [\"\\u00e7\\u00ae\"], \"n\\u00c4\": null, \"w\": null}, \"\\udb15\\udf79c\\u00ac[\": [], \"f\\u00ee\": [null, {}, null]}", "outcome": "reject", "exit_code": 2, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"0\\u00e2\": {\">\": {}}, \"\\u00af\\u00ee\\u0081\\u0000\": {\"\\ud84a\\udc88\\u00b1\\u00cc\\ud8c4\\udd1c\": null, \"HOME\": null, \"bO\\u0093\\u00b1\": null, \"\\u0012\\u00e2\\ud89f\\uded9\": 426}, \"\\u00c8\\u009cf\\u000e\": {}, \"o\": false}", "outcome": "reject", "exit_code": 2, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"0\\u00e2\": {\">\": {}}, \"o\": {\"\\ud84a\\udc88\\u00b1\\u00cc\\ud8c4\\udd1c\": null, \"HOME\": null, \"bO\\u0093\\u00b1\": null, \"\\u0012\\u00e2\\ud89f\\uded9\": 426}, \"\\u00c8\\u009cf\\u000e\": {}, \"0\": []}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"0\\u00e2\": {\">\": {}}, \"o\": {\"\\ud84a\\udc88\\u00b1\\u00cc\\ud8c4\\udd1c\": null, \"HOME\": null, \"bO\\u0093\\u00b1\": null, \"\\u0012\\u00e2\\ud89f\\uded9\": null}, \"\\u00c8\\u009cf\\u000e\": {}, \"0\": []}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"runs\": []}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "-3342", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\ud880\\udfed\\u00f1\\u00ff\\u0092\": [], \"?\\u00ae\\u00b3\\u00fd\": \"\\ud940\\ude05\\u0088j\\udaa1\\uded0\", \"1/0\": [null, 371, 1616], \"\\u00c9\": [-1.1526881095990296e+16, null, \"\\u00b6@y\\u0018\", true]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\ud880\\udfed\\u00f1\\u00ff\\u0092\": [], \"?\\u00ae\\u00b3\\u00fd\": \"\\ud940\\ude05\\u0088j\\udaa1\\uded0\", \"\\u00c9\": [null, 371, 1616], \"0\": -1.1526881095990296e+16}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\ud880\\udfed\\u00f1\\u00ff\\u0092\": [], \"?\\u00ae\\u00b3\\u00fd\": \"\\ud940\\ude05\\u0088j\\udaa1\\uded0\", \"\\u00c9\": [0]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\ud880\\udfed\\u00f1\\u00ff\\u0092\": [], \"?\\u00ae\\u00b3\\u00fd\": [0], \"\\u00c9\": [0]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\ud880\\udfed\\u00f1\\u00ff\\u0092\": [0], \"?\\u00ae\\u00b3\\u00fd\": [0], \"\\u00c9\": [0]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"!\": [], \"s\": {\"\\udb02\\udf26\": [\"\\u00cd\\u0015\\ud81c\\udd70|\\u0017\\u00a2\"], \"I\": false}, \"\\u00fc\\u0084d\\ud9b8\\ude45\": [{\"\\ud85d\\ude0c\\\"\\udb2d\\udcfc\\u00e2\": 2.0, \"\\u00f5\": 5.604952075767619e+16}], \"\\u0083\\u0084\\u00f9\\u00c3\": {\"\\ud86d\\udc92\\u00e2\\u00dd\": []}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"!\": [], \"s\": {\"\\udb02\\udf26\": [\"\\u00cd\\u0015\\ud81c\\udd70|\\u0017\\u00a2\"], \"I\": false}, \"\\u00fc\\u0084d\\ud9b8\\ude45\": {\"\\ud86d\\udc92\\u00e2\\u00dd\": []}, \"\\u0083\\u0084\\u00f9\\u00c3\": {\"\\ud86d\\udc92\\u00e2\\u00dd\": []}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"!\": [], \"s\": {\"\\udb02\\udf26\": [\"\\u00cd\\u0015\\ud81c\\udd70|\\u0017\\u00a2\"], \"I\": false}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"!\": [], \"s\": {\"\\udb02\\udf26\": [false], \"I\": false}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"!\": [], \"s\": {\"I\": [false], \"0\": []}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"!\": [], \"s\": {\"I\": [], \"0\": []}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"!\": [], \"s\": {\"!\": [], \"s\": 0}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[true, 164, false, \"\\\"\"]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[true, 164, true, \"\\\"\"]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[true, 164, 164, \"\\\"\"]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[true, 164, \"\\\"\", \"\\\"\"]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[true, true, \"\\\"\", \"\\\"\"]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[true, true, \"\\\"\", true]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[true, \"\\\"\", \"\\\"\", true]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "9.586670523885076e+162", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[], {\"\\ud87b\\udf5c\\u001c\\u0093z\": true, \"\\u00dd9\\uda21\\udca7\": -11698462, \"\\udb70\\udd47THi\": 16526146, \"\\u00f8\": \"\"}, \"\", {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[], {\"\\ud87b\\udf5c\\u001c\\u0093z\": true, \"\\u00dd9\\uda21\\udca7\": -11698462, \"\\udb70\\udd47THi\": -11698462, \"\\u00f8\": \"\"}, \"\", {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[], {\"\\ud87b\\udf5c\\u001c\\u0093z\": true, \"\\u00f8\": -11698462, \"\\udb70\\udd47THi\": -11698462, \"0\": 0}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[], {\"\\ud87b\\udf5c\\u001c\\u0093z\": true, \"\\u00f8\": -11698462, \"\\udb70\\udd47THi\": -11698462, \"0\": 0}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[], {\"\\ud87b\\udf5c\\u001c\\u0093z\": true, \"0\": -11698462, \"\\udb70\\udd47THi\": -11698462}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {\"\\ud87b\\udf5c\\u001c\\u0093z\": true, \"0\": -11698462, \"\\udb70\\udd47THi\": -11698462}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {\"0\": true, \"\\udb70\\udd47THi\": -11698462}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00b69\\u3541\\u0016\": {}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00b69\\u3541\\u0016\": {\"\\u00b69\\u3541\\u0016\": null}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[1.2373676355316627e-35]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[-4.8948309791183256e+16, [-711988, null, null, null]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[-4.8948309791183256e+16, 0]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[-4.8948309791183256e+16, 0.0]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[-4.8948309791183256e+16, -4.8948309791183256e+16]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"Z\": 4.209661562350152e-65}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"X\": [null, 1000000.0, true, -110313429]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"X\": [null, true, true, -110313429]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\ud8d7\\udf7fy\": {}, \"\\u00d2\\ud94d\\udca9\\n\": {\"\\u001a\\ud903\\udf4c5\\u0007\": [\"3\\u0086\\ud839\\udd41\\udaf0\\udf14\", true, -1.7485266288354956e+180, -251214], \"\\u00eb\\u0004\": {}, \"7\": true, \"\\u0090\\u00ee\": {}}, \"f\": {\"\\u0017!\\u00de\\u00db\": 5.26314975894621e+16}, \"\\u009a \\ua1d3\\u0002\": {}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\ud8d7\\udf7fy\": {}, \"\\u00d2\\ud94d\\udca9\\n\": {\"\\u001a\\ud903\\udf4c5\\u0007\": [\"3\\u0086\\ud839\\udd41\\udaf0\\udf14\", true, -1.7485266288354956e+180, -251214], \"\\u00eb\\u0004\": {}, \"7\": true, \"\\u0090\\u00ee\": {}}, \"f\": {\"\\u0017!\\u00de\\u00db\": false}, \"\\u009a \\ua1d3\\u0002\": {}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\ud8d7\\udf7fy\": {}, \"\\u00d2\\ud94d\\udca9\\n\": {\"\\u001a\\ud903\\udf4c5\\u0007\": [\"3\\u0086\\ud839\\udd41\\udaf0\\udf14\", true, -1.7485266288354956e+180, -251214], \"\\u00eb\\u0004\": {}, \"7\": true, \"\\u0090\\u00ee\": {}}, \"f\": {}, \"0\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\ud8d7\\udf7fy\": {}, \"\\u00d2\\ud94d\\udca9\\n\": {}, \"f\": {}, \"0\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\ud8d7\\udf7fy\": {}, \"\\u00d2\\ud94d\\udca9\\n\": {}, \"f\": {\"\\ud8d7\\udf7fy\": {}, \"\\u00d2\\ud94d\\udca9\\n\": 0}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\ud8d7\\udf7fy\": {}, \"\\u00d2\\ud94d\\udca9\\n\": {}, \"f\": {\"\\ud8d7\\udf7fy\": {}, \"\\u00d2\\ud94d\\udca9\\n\": {}}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\ud8d7\\udf7fy\": {\"\\ud8d7\\udf7fy\": null}, \"\\u00d2\\ud94d\\udca9\\n\": {}, \"f\": {\"\\ud8d7\\udf7fy\": {}, \"\\u00d2\\ud94d\\udca9\\n\": {}}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[3]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"\\u00b4\": {}, \"\\u0085{\": [null], \"\\u000e\\u00b4'\": [1.7976931348623155e+308, -3.2819230926108286e-129, true, \"\"]}, {}, {}, [352441, null, 563]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {}, {}, [352441, null, 563]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {}, {}, [352441, null, 352441]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {}, {}, 4]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {}, {}, {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {}, {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, []]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {}, []]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, 4]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {}, 4]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"K\\udb92\\udc36,\": {\"\\u00ce\\u009aD\\uda6a\\udfbe\": \"7o\\u0082\\u00a1\\u00f0\", \"\\u00e8\\u00d0\\ud9dc\\udde8\": \"\\ud9fd\\udecc\", \"INF\": \"\\udba7\\udf5b=\\u0091\\u00b51\\u00b9\", \"\\u0014\": false}, \"\\u00b5\": [{\"\\u0006\\u0012\\u00fe\": \"L\"}, \"P\\u0088\\u001b\\u0088\\u00ad\", true, {}]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"K\\udb92\\udc36,\": {\"\\u00ce\\u009aD\\uda6a\\udfbe\": \"7o\\u0082\\u00a1\\u00f0\", \"\\u00e8\\u00d0\\ud9dc\\udde8\": \"\\ud9fd\\udecc\", \"INF\": \"\\udba7\\udf5b=\\u0091\\u00b51\\u00b9\", \"\\u0014\": \"7o\\u0082\\u00a1\\u00f0\"}, \"\\u00b5\": [{\"\\u0006\\u0012\\u00fe\": \"L\"}, \"P\\u0088\\u001b\\u0088\\u00ad\", true, {}]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"K\\udb92\\udc36,\": {\"\\u00ce\\u009aD\\uda6a\\udfbe\": \"7o\\u0082\\u00a1\\u00f0\", \"\\u00e8\\u00d0\\ud9dc\\udde8\": \"\\ud9fd\\udecc\", \"INF\": \"\\udba7\\udf5b=\\u0091\\u00b51\\u00b9\", \"\\u0014\": \"7o\\u0082\\u00a1\\u00f0\"}, \"\\u00b5\": [true, \"P\\u0088\\u001b\\u0088\\u00ad\", true, {}]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"K\\udb92\\udc36,\": [true, \"P\\u0088\\u001b\\u0088\\u00ad\", true, {}], \"\\u00b5\": [true, \"P\\u0088\\u001b\\u0088\\u00ad\", true, {}]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00b5\": [true, \"P\\u0088\\u001b\\u0088\\u00ad\", true, {}], \"0\": 1}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00b5\": [\"\", \"P\\u0088\\u001b\\u0088\\u00ad\", true, {}], \"0\": 1}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\udae8\\ude39\": {\"\\u00c8u\": -1.0914451565400087e-175, \"p\": null}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\udae8\\ude39\": {}, \"p\": {}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\udae8\\ude39\": {\"\\udae8\\ude39\": null}, \"p\": {}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\udae8\\ude39\": {}, \"0\": 2}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\udae8\\ude39\": {\"\\udae8\\ude39\": null}, \"0\": 2}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\udae8\\ude39\": {\"\\udae8\\ude39\": null, \"0\": 0}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[false]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[null, 685, true], false, {\"\\u00ff\\ud818\\udeactC\": true}, {\"\\u00e8\": false, \"\\u00a0\\u00fbNe\": -6.3994768100182216e+16, \"E\\u000f\\u00fe\\u00e3\": null, \"\\u00f7\\u00ac\\u00e0\\ud9f7\\udf93\": false}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"0\": 0}, [0]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[0], [0]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[0], [0, true]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[0], [true]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[0], []]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[], []]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"9s\": 298468880, \"\\u0086\\ud8bf\\udf9eL$\": \"\\u00f5\\u00day\\u00f3\\u00e2\\ud9ef\\ude5d\", \"\\fo\": false}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u0086\\ud8bf\\udf9eL$\": \"\\u00f5\\u00day\\u00f3\\u00e2\\ud9ef\\ude5d\", \"0\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u0086\\ud8bf\\udf9eL$\": 0, \"0\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[-3940561177463047.0]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\uda2d\\udd5f^\": {\"\\ud957\\udd4fo\\u0080E\": 4.252542750436329e+16, \"\\u00d8\\udb05\\udcf7\\ud98a\\udd34\": -93892, \"M\\u00e3\": {\"\\u0006\": \"\\\\9\\u00ab@\\u00d2\\u0097\", \"\\u00f0\\u0002\": null, \"\\u00bd\": false, \"\\u00a2\\u00cf\\b\\u00f5\": 20146}, \"\\ud9e8\\udd51\": {\"\\u00e7g<\": false, \"\\udbd2\\udf9fE\\u008c|\": -876}}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\uda2d\\udd5f^\": {}, \"0\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"0\": {}, \"\\uda2d\\udd5f^\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"0\": {\"0\": 0}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[null, {}, [], {\"\\u00a6\\u00b4|\": \"\"}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[null, {\"\\u00a6\\u00b4|\": \"\"}, [], {\"\\u00a6\\u00b4|\": \"\"}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[null, {\"\\u00a6\\u00b4|\": \"\"}, [], null]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[null, [], [], null]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[null, [], null, null]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[], [], null, null]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"d\\u00f6\": null}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "-1336", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"*.\\u0015o\": -2.9127195205934498e+78, \"\\u00b7\": [], \"\\u0018x\\u001d\\u0082\": -21510939718755606528, \"\\udb3f\\udf5a\\udad6\\udf1d\\u000f\\ud969\\udfab\": null}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\\"\": \"\\u00fe\\ud86b\\udf80\", \";\": [null]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\\"\": \"\\u00fe\\ud86b\\udf80\", \";\": [\"\\u00fe\\ud86b\\udf80\"]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\\"\": \"\\u00fe\\ud86b\\udf80\", \";\": [0]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\\"\": [0], \";\": [0]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[-53]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"p\": null}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[false, [], -7.530367199236396e-126]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[-7.530367199236396e-126, [], -7.530367199236396e-126]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[-7.530367199236396e-126, [], []]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[-7.530367199236396e-126, -7.530367199236396e-126, []]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[-7.530367199236396e-126, -7.530367199236396e-126, [4]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[null, -46791594, true, true]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[1, {\"0\": 0}, true]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[1, {\"0\": true}, true]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"0\": true}, {\"0\": true}, true]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"0\": true}, {\"0\": true}, 2, true]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {\"0\": true}, {\"0\": true}, 2]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"EB\": -335012044505642, \"/Z\\u001b\": [-1167738], \"\\ud9d4\\udfc0\\ud983\\udd34\": []}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[-34927, 10596302324]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[10596302324, 10596302324]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[{\"\\u00f2\": \"\", \"\\u00b8\\u00e8\\u0019\": \"\\u00bb\\ud941\\udd8c\\uda94\\ude52,\\u00e3\\u82ad\", \"\\u0099\\u0091\\ud9b9\\ude3f\": false}, {}, null, 2913469], -2088187100, [{\"\\u00b5\": 22906, \"\\u00b3\": -6.356272121721193e+162, \"\\uda83\\ude62\\u009d\\uda56\\udfc9\\u00f6\": false, \"\\u00bd\\ud950\\ude8c\": true}], {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[{\"\\u00f2\": \"\", \"\\u00b8\\u00e8\\u0019\": \"\\u00bb\\ud941\\udd8c\\uda94\\ude52,\\u00e3\\u82ad\", \"\\u0099\\u0091\\ud9b9\\ude3f\": false}, {}, null, 2913469], -2088187100, [{}], {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[{}], -2088187100, [{}], {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[null, \"\\ud8a5\\udfe6^%\\u00cc\\u0013\\uda0e\\udd92\", true, 0.2]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[null, null, true, 0.2]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[null, null, null, 0.2]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[null, null, null, null]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"1\\ud834\\uddea\": -2921348918, \"\\u000b\": true, \"\\u0007I\\u00d4\\u00af\": {\"\\ud981\\ude23\\u0010\": -268131}, \"\\u00cc\\u00c0\": [232, 5.689068743532467e+16, \"\\u00b5\\u00ea\", 6.281678284901422e+16]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"1\\ud834\\uddea\": -2921348918, \"\\u000b\": true, \"\\u0007I\\u00d4\\u00af\": {\"\\ud981\\ude23\\u0010\": -268131}, \"\\u00cc\\u00c0\": [232, -2921348918, \"\\u00b5\\u00ea\", 6.281678284901422e+16]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"1\\ud834\\uddea\": -2921348918, \"\\u000b\": true, \"\\u0007I\\u00d4\\u00af\": {\"1\\ud834\\uddea\": 0}, \"0\": [0]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"1\\ud834\\uddea\": [0], \"\\u000b\": true, \"\\u0007I\\u00d4\\u00af\": {\"1\\ud834\\uddea\": 0}, \"0\": [0]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"1\\ud834\\uddea\": [0], \"\\u000b\": true, \"\\u0007I\\u00d4\\u00af\": {\"1\\ud834\\uddea\": true}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"1\\ud834\\uddea\": [0], \"\\u000b\": {\"1\\ud834\\uddea\": true}, \"\\u0007I\\u00d4\\u00af\": {\"1\\ud834\\uddea\": true}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"1\\ud834\\uddea\": [0], \"\\u000b\": {}, \"0\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, [-2.1371874658158832e-64, 3.0372425546567748e+16, false], \"\\u000f\"]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, [-2.1371874658158832e-64, -2.1371874658158832e-64, false], \"\\u000f\"]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, 4]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {}, {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {}, {}, {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00f8\": false}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "-187", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[\"\", false, null, {\"e$\\u0090\\n\": 8140, \"\\ud8a6\\ude88\": -3172, \"\\u0086\": \"\"}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[\"\", false, null, {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[null, false, null, {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[null, false]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[null, null]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[1.1324929159970682e+215, -201266, 1.7976931348623157e+308]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[1.1324929159970682e+215, 1.7976931348623157e+308, 1.7976931348623157e+308]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[1.7976931348623157e+308, 1.7976931348623157e+308, 1.7976931348623157e+308]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[\"\\u00ef\", -29041985847206090899456]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[-29041985847206090899456, -29041985847206090899456]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\udbd1\\ude1a\": null, \"vO\": \"\\u00eb\", \"json\": false, \":\\u008a\\udb77\\udfaf\\u00c8\": 3.6094735542401074e+285}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\udbd1\\ude1a\": null, \"vO\": \"\\u00eb\", \"json\": false, \"\\u00eb\": 3.6094735542401074e+285}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"json\": null, \"vO\": \"\\u00eb\", \"0\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"json\": 0, \"vO\": \"\\u00eb\", \"0\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"json\": 0, \"\\u00eb\": \"\\u00eb\", \"0\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00ac\": -167548562, \"9\": {\"NUL\": \"\", \"J\\u00c0\\ud94c\\uddc6\\ud85e\\udfe5\": \"AQ\\u00d3s\\u00f6\", \"\\u0098\\u00den\\u009e\": \"\\udaaa\\udd68\\u00d3\"}, \"\\udb50\\udc9c\\ud8fc\\uddd9\\ue02f\\udb3c\\udd99\": {}, \"\\u00f4Q\\u009a\": 1.7976931348623155e+308}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00ac\": -167548562, \"9\": {}, \"0\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00ac\": 0, \"9\": {}, \"0\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00ac\": 0, \"9\": {\"\\u00ac\": 0}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00ac\": 0, \"9\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[null, 1e-05, true, null]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[null, 1e-05, true, false]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {}, {\"\\u00ff\\udb97\\uddc0\\u00e3\\u0097\": [false], \"\\u0002\": [null, null], \"\\u00eb\": {\"\\u0013\\ud8c5\\ude26\\u00f3!\": false, \",\\u00e4\": -1.7976931348623155e+308, \"%-\": -981483665410.2936, \"\\u00a5\": \"\\ud948\\udda0\"}, \"\\u00bf\": {\"u\": true, \"\\udb58\\ude70\": {\"\\uf842\": null, \"\\u00f4$\\u00c2\": 0.0, \"\\u00cd\\u0088\\u00f5\\u00dd\": -5.42177274054591e+16, \"\\u00c2\\u0005Jy\": null}}}, {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {}, {\"\\u00ff\\udb97\\uddc0\\u00e3\\u0097\": [false], \"\\u0002\": [null, null], \"\\u00eb\": {\"\\u0013\\ud8c5\\ude26\\u00f3!\": false, \",\\u00e4\": -1.7976931348623155e+308, \"%-\": -981483665410.2936, \"\\u00a5\": \"\\ud948\\udda0\"}, \"\\u00bf\": {\"u\": true, \"\\udb58\\ude70\": {\"\\uf842\": null, \"\\u00f4$\\u00c2\": null, \"\\u00cd\\u0088\\u00f5\\u00dd\": -5.42177274054591e+16, \"\\u00c2\\u0005Jy\": null}}}, {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {}, {\"\\u00ff\\udb97\\uddc0\\u00e3\\u0097\": [false], \"\\u0002\": [null, null], \"\\u00eb\": {\"\\u0013\\ud8c5\\ude26\\u00f3!\": -1.7976931348623155e+308, \",\\u00e4\": -1.7976931348623155e+308, \"%-\": -981483665410.2936, \"\\u00a5\": \"\\ud948\\udda0\"}, \"\\u00bf\": {\"u\": true, \"\\udb58\\ude70\": {\"\\uf842\": null, \"\\u00f4$\\u00c2\": null, \"\\u00cd\\u0088\\u00f5\\u00dd\": -5.42177274054591e+16, \"\\u00c2\\u0005Jy\": null}}}, {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\ud890\\ude82\": 1.418380393671002e-162}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "6739466378219100.0", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"1\\u00d0\": 701, \"\\u00f2\\udbce\\udf65\\u008f\\udbe3\\ude54\": [false, 2.1060266451557287e+45], \"\\uda6a\\udd38<\": [\"\"], \"y\": {}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"1\\u00d0\": 701, \"\\u00f2\\udbce\\udf65\\u008f\\udbe3\\ude54\": {}, \"\\uda6a\\udd38<\": [\"\"], \"y\": {}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"1\\u00d0\": \"\", \"\\u00f2\\udbce\\udf65\\u008f\\udbe3\\ude54\": {}, \"\\uda6a\\udd38<\": [\"\"], \"y\": {}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"1\\u00d0\": \"\", \"\\u00f2\\udbce\\udf65\\u008f\\udbe3\\ude54\": {}, \"\\uda6a\\udd38<\": [\"\"], \"0\": {}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"1\\u00d0\": {}, \"\\u00f2\\udbce\\udf65\\u008f\\udbe3\\ude54\": {}, \"\\uda6a\\udd38<\": [\"\"], \"0\": {}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[[null, -8.087771371599997e-78, 1000000.0], [], null, [4.6831822094955704e+16, true, \"\\udad0\\udd48\"]], [{\"\\u00f0\": -79, \"\\u00d5Q\\ud990\\udc0e\": \"\\uda14\\ude27\\u0086\\\\\"}, {\"^\": false, \"\\u0081\\u00c7\": null}, [false], []]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[{\"\\u00f0\": -79, \"\\u00d5Q\\ud990\\udc0e\": \"\\uda14\\ude27\\u0086\\\\\"}, {\"^\": false, \"\\u0081\\u00c7\": null}, [false], []], [{\"\\u00f0\": -79, \"\\u00d5Q\\ud990\\udc0e\": \"\\uda14\\ude27\\u0086\\\\\"}, {\"^\": false, \"\\u0081\\u00c7\": null}, [false], []]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[{\"^\": false, \"\\u0081\\u00c7\": null}, {\"^\": false, \"\\u0081\\u00c7\": null}, [false], []], [{\"\\u00f0\": -79, \"\\u00d5Q\\ud990\\udc0e\": \"\\uda14\\ude27\\u0086\\\\\"}, {\"^\": false, \"\\u0081\\u00c7\": null}, [false], []]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[{\"^\": false, \"\\u0081\\u00c7\": null}, {\"^\": false, \"\\u0081\\u00c7\": null}, [false], []], [{\"^\": false, \"\\u0081\\u00c7\": null}, {\"^\": false, \"\\u0081\\u00c7\": null}, [false], []]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[{\"^\": false, \"\\u0081\\u00c7\": null}, [false], [false], []], [{\"^\": false, \"\\u0081\\u00c7\": null}, {\"^\": false, \"\\u0081\\u00c7\": null}, [false], []]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[{\"^\": false, \"\\u0081\\u00c7\": null}, [false], [false], []], [[], {\"^\": false, \"\\u0081\\u00c7\": null}, [false], []]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[[], {\"^\": false, \"\\u0081\\u00c7\": null}, [false], []], [[], {\"^\": false, \"\\u0081\\u00c7\": null}, [false], []]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"q\": \"h*\", \"\\u008b\\u00d9\\u0087\\t\": -3308128267282949.0}, {\"\\udab2\\udd40\": -600, \"v\\udadb\\uddec\": null, \"z\\u00d9\\\"\": true, \"\\u00e4z3\": \"\\ud9b6\\udda6\\u001b\\u008b\\u00bcz\\u00fb\"}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"q\": \"h*\", \"\\u008b\\u00d9\\u0087\\t\": -3308128267282949.0}, 2, \"h*\", -3308128267282949.0]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"q\": \"h*\", \"\\u008b\\u00d9\\u0087\\t\": -3308128267282949.0}, 2, 2, -3308128267282949.0]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {\"q\": \"h*\", \"\\u008b\\u00d9\\u0087\\t\": -3308128267282949.0}, 2, 2]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {}, 2, 2]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {}, {}, 2]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {}, {}, {}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\n'\": [], \"\\u00fd\\u0080O\": [], \"\\u00ba\": [], \"F\\uda33\\udc31\\u0095\": [6.26234082136041e-155, 1.0117283258743525e+37]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\n'\": [], \"\\u00fd\\u0080O\": [], \"\\u00ba\": [], \"F\\uda33\\udc31\\u0095\": [6.26234082136041e-155, 1.0117283258743525e+37]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\n'\": [], \"\\u00fd\\u0080O\": [], \"\\u00ba\": [\"\", true]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\n'\": [], \"\\u00fd\\u0080O\": [], \"\\u00ba\": [\"\", \"\"]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[-1.192092896e-07], [null, -1381157136], {\"]\": true, \"\\u001f<\": 69622, \"V~\\udb1b\\udc8c\": null, \"note\": -3.4830686075575784e+16}, [null]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[-1.192092896e-07], [null, -1381157136], {}, [-1.192092896e-07]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[-1.192092896e-07], [null, -1381157136], {}, [true]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[-1.192092896e-07], [-1.192092896e-07], {}, [true]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"0\": 0}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, 0]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{}, {}, 0]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[null], {\"\\u00a9\\ud858\\udfcc\\u00c6q\": null, \"\\u00f9\\u009b\\u00d0\\u00ea\": true, \"\\u008b\": 507508, \"\\udbf0\\udcb6\": 7.431085822040459e+292}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[null], [null, true, 507508, 7.431085822040459e+292]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[null], [0.0]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[null], [0]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[0, 0]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[5, 0, 0]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"~\\u00ec\\ud9ee\\udfed\\u00e0\": false, \"C&k\\u00f4\": false}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "\"\"", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\udaf4\\udc99L\\u00e6\": {}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[\"\"]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[37489, \"\\\"\", [false, true]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[37489, 37489, [false, true]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[false, true], 37489, [false, true]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[false, true], []]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[false, false], []]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"\\u00c3.\": false, \"\\u00e8(\": -3.641434050689904e+16}, null, [\"\\udb51\\udcb8\", \"\\ud932\\udca8\\u00af\\u00e2\", null, null], [null, \"\", false]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"\\u00c3.\": null, \"\\u00e8(\": -3.641434050689904e+16}, null, [\"\\udb51\\udcb8\", \"\\ud932\\udca8\\u00af\\u00e2\", null, null], [null, \"\", false]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"\\u00c3.\": null, \"\\u00e8(\": -3.641434050689904e+16}, {}, [\"\\udb51\\udcb8\", \"\\ud932\\udca8\\u00af\\u00e2\", null, null], [null, \"\", false]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"\\u00c3.\": null, \"\\u00e8(\": -3.641434050689904e+16}, {\"\\u00c3.\": null, \"\\u00e8(\": -3.641434050689904e+16}, [\"\\udb51\\udcb8\", \"\\ud932\\udca8\\u00af\\u00e2\", null, null], [null, \"\", false]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"\\u00c3.\": null, \"\\u00e8(\": -3.641434050689904e+16}, {\"\\u00c3.\": null, \"\\u00e8(\": -3.641434050689904e+16}, [\"\\udb51\\udcb8\", \"\\ud932\\udca8\\u00af\\u00e2\", null, null], {\"\\u00c3.\": null, \"\\u00e8(\": -3.641434050689904e+16}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"\\u00c3.\": null, \"\\u00e8(\": -3.641434050689904e+16}, {\"\\u00c3.\": null, \"\\u00e8(\": -3.641434050689904e+16}, [\"\\udb51\\udcb8\", \"\\ud932\\udca8\\u00af\\u00e2\", \"\\ud932\\udca8\\u00af\\u00e2\", null], {\"\\u00c3.\": null, \"\\u00e8(\": -3.641434050689904e+16}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[{\"\\u00c3.\": null, \"\\u00e8(\": -3.641434050689904e+16}, {\"\\u00c3.\": null, \"\\u00e8(\": -3.641434050689904e+16}, [\"\\udb51\\udcb8\", \"\\ud932\\udca8\\u00af\\u00e2\", \"\\ud932\\udca8\\u00af\\u00e2\", null], {\"\\u00c3.\": null, \"\\u00e8(\": null}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"@\": \"\\uda46\\udcb0\", \"\\u06e2\": \"\", \")\\u00b1\\ud9db\\udd26\": -2528487698888376, \"t\\u00f5\": {}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"@\": \"\\uda46\\udcb0\", \"\\u06e2\": \"\", \"0\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"@\": \"\\uda46\\udcb0\", \"\\u06e2\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"@\": \"\\uda46\\udcb0\", \"\\u06e2\": \"\"}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"@\": \"\", \"\\u06e2\": \"\"}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"@\": \"@\", \"\\u06e2\": \"\"}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00c0I\": \"j\\u009c>\\u00d1\\u0000\", \"\\udb92\\udf8b\\u0083#\\u00b9\": [null], \"\\u00c6S\": false}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00c0I\": null}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\neR\\u00ee\": [false, 1.1, 1.2015779679252667e+114, null]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\neR\\u00ee\": [false, 1.1, null, null]}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00f3\\u0083F\\u00c2\": -1.1143364573201024e+79, \"\\u0019\\u00d8\": 1.7976931348623155e+308, \"Z>\\ud957\\udd05\\u00c1\": \"\\ud87d\\udd29\"}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00f3\\u0083F\\u00c2\": -1.1143364573201024e+79, \"\\u0019\\u00d8\": 1.7976931348623155e+308, \"Z>\\ud957\\udd05\\u00c1\": -1.1143364573201024e+79}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\">\": 567, \"\\udafd\\udf2ek\": \"9\\u00be\\udb7c\\ude7e\\u0081\\u0089\"}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\">\": \"\", \"\\udafd\\udf2ek\": \"9\\u00be\\udb7c\\ude7e\\u0081\\u0089\"}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\">\": \"\"}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u0088b\\ud84a\\uddfd\\ud8cf\\uddb8\": -441}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u0088b\\ud84a\\uddfd\\ud8cf\\uddb8\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00f3\\uda44\\udd59\": \"\\u009d\", \"\\udad9\\udecd\\u00a35\\ud836\\udf18\": 4638058, \"\\u0019\\ud984\\udc5c\": 1.5727813964709607e-104}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00f3\\uda44\\udd59\": 4638058, \"\\udad9\\udecd\\u00a35\\ud836\\udf18\": 4638058, \"\\u0019\\ud984\\udc5c\": 1.5727813964709607e-104}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00f3\\uda44\\udd59\": 4638058, \"\\udad9\\udecd\\u00a35\\ud836\\udf18\": 0.0, \"\\u0019\\ud984\\udc5c\": 1.5727813964709607e-104}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00f3\\uda44\\udd59\": 4638058, \"\\udad9\\udecd\\u00a35\\ud836\\udf18\": 0.0, \"\\u0019\\ud984\\udc5c\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00f3\\uda44\\udd59\": 0.0, \"\\udad9\\udecd\\u00a35\\ud836\\udf18\": 0.0, \"\\u0019\\ud984\\udc5c\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00f3\\uda44\\udd59\": 0, \"\\udad9\\udecd\\u00a35\\ud836\\udf18\": 0.0, \"\\u0019\\ud984\\udc5c\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "-8810877512881051.0", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[], null, null, 369508491]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[0]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "3.484627930232681e+16", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00b7\": {}, \"\\u001e\\u00e7\\u00f8\": {\"\\u009b\": null, \"!\\ud918\\ude9b\": [-1190]}, \"\\uda50\\udf96\": {\"H\\ud8cd\\udc5f\\ud945\\udd0b\": null, \"\\u0017\\u0088\\u00d7\\ud9ed\\udeb8\": false, \"\\u00e4+\": 6.103515625e-05, \"\\ud933\\udc77;\": \"$\\ud922\\udce7\\fC\\u00f5\"}, \"\\udbe0\\udf11\\udb99\\ude20i\\u00f3\": []}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00b7\": {}, \"\\u001e\\u00e7\\u00f8\": {\"\\u009b\": null, \"!\\ud918\\ude9b\": [-1190]}, \"\\uda50\\udf96\": {\"H\\ud8cd\\udc5f\\ud945\\udd0b\": null, \"\\u0017\\u0088\\u00d7\\ud9ed\\udeb8\": null, \"\\u00e4+\": 6.103515625e-05, \"\\ud933\\udc77;\": \"$\\ud922\\udce7\\fC\\u00f5\"}, \"\\udbe0\\udf11\\udb99\\ude20i\\u00f3\": []}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00b7\": {\"\\u009b\": null, \"!\\ud918\\ude9b\": [-1190]}, \"\\u001e\\u00e7\\u00f8\": {\"\\u009b\": null, \"!\\ud918\\ude9b\": [-1190]}, \"\\uda50\\udf96\": {\"H\\ud8cd\\udc5f\\ud945\\udd0b\": null, \"\\u0017\\u0088\\u00d7\\ud9ed\\udeb8\": null, \"\\u00e4+\": 6.103515625e-05, \"\\ud933\\udc77;\": \"$\\ud922\\udce7\\fC\\u00f5\"}, \"\\udbe0\\udf11\\udb99\\ude20i\\u00f3\": []}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00b7\": {\"\\u00b7\": 0}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00b7\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[null, -401536.3612105429, \"\\u00fc\\ud9d7\\uddde8\\u001e\\u00fb[\", true]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[null, -401536.3612105429, \"\\u00fc\\ud9d7\\uddde8\\u001e\\u00fb[\", null]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[\"\\u00fc\\ud9d7\\uddde8\\u001e\\u00fb[\", -401536.3612105429, \"\\u00fc\\ud9d7\\uddde8\\u001e\\u00fb[\", null]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[\"\\u00fc\\ud9d7\\uddde8\\u001e\\u00fb[\", null, \"\\u00fc\\ud9d7\\uddde8\\u001e\\u00fb[\", null]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[\"\\u00fc\\ud9d7\\uddde8\\u001e\\u00fb[\", null, \"\\u00fc\\ud9d7\\uddde8\\u001e\\u00fb[\", \"\\u00fc\\ud9d7\\uddde8\\u001e\\u00fb[\"]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[\"\\u00fc\\ud9d7\\uddde8\\u001e\\u00fb[\", null, null, null]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\" \\u009c\\u00b9E\": true, \"\\ud99d\\udcb2\\u00ba\\u00a4\\u0084\": []}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[], [5.0, false, 464461], {}, {\"\\u00ee\": -1.131081709479247e-217, \"\\uda5d\\uddf9\\u0004\\u00bf\": true}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[], [], {}, {\"\\u00ee\": -1.131081709479247e-217, \"\\uda5d\\uddf9\\u0004\\u00bf\": true}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[], [], {}, {\"\\u00ee\": true, \"\\uda5d\\uddf9\\u0004\\u00bf\": true}]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[], [], {}, []]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[], [], [], []]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"n\": -1971734618, \"LW-\\u009f\": null}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[201170, 4.788177502521977e+16]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[4.788177502521977e+16, 4.788177502521977e+16]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00ae\\udab2\\udc3f\\u00a0\": {\"\\u00e1\\ud8c5\\udd95\": 10109089, \"\\udb15\\udd4e\\u0090\": false, \"[\": null, \"\\u00ea\\u00cd\\u00c2\\u00bb\": \"\"}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00ae\\udab2\\udc3f\\u00a0\": {\"\\u00e1\\ud8c5\\udd95\": false, \"\\udb15\\udd4e\\u0090\": false, \"[\": null, \"\\u00ea\\u00cd\\u00c2\\u00bb\": \"\"}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00ae\\udab2\\udc3f\\u00a0\": {\"\\u00e1\\ud8c5\\udd95\": null, \"\\udb15\\udd4e\\u0090\": false, \"[\": null, \"\\u00ea\\u00cd\\u00c2\\u00bb\": \"\"}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00ae\\udab2\\udc3f\\u00a0\": {\"\\u00e1\\ud8c5\\udd95\": null, \"\\udb15\\udd4e\\u0090\": false, \"[\": null, \"\\u00ea\\u00cd\\u00c2\\u00bb\": null}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00ae\\udab2\\udc3f\\u00a0\": {\"\\u00e1\\ud8c5\\udd95\": null, \"\\udb15\\udd4e\\u0090\": false, \"0\": 0}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00ae\\udab2\\udc3f\\u00a0\": {\"\\u00ae\\udab2\\udc3f\\u00a0\": null, \"\\u00e1\\ud8c5\\udd95\": null, \"\\udb15\\udd4e\\u0090\": false, \"0\": 0}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u00ae\\udab2\\udc3f\\u00a0\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u009dK\\\"\\udad8\\udc3a\": {\"[]\": null, \"\\ud919\\udda8z\": false, \"=C\\u00f1\\u00bd\": -2728960257}, \"\\u00af\\u00cf\": null, \"\\u00e6s\": {}, \"\\u00c4\\u008f\": \"A\\u009a\\udb67\\udeaf\\udbb4\\udcd7\\u00041\"}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u009dK\\\"\\udad8\\udc3a\": {\"[]\": null, \"\\ud919\\udda8z\": false, \"=C\\u00f1\\u00bd\": -2728960257}, \"\\u00af\\u00cf\": null, \"\\u00e6s\": {}, \"\\u00c4\\u008f\": \"\\u00c4\\u008f\"}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u009dK\\\"\\udad8\\udc3a\": {\"[]\": null, \"\\u009dK\\\"\\udad8\\udc3a\": null, \"0\": 0}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u009dK\\\"\\udad8\\udc3a\": {\"[]\": 0, \"\\u009dK\\\"\\udad8\\udc3a\": null, \"0\": 0}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u009dK\\\"\\udad8\\udc3a\": {\"[]\": 0, \"\\u009dK\\\"\\udad8\\udc3a\": 0, \"0\": 0}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u009dK\\\"\\udad8\\udc3a\": {\"[]\": 0}, \"[]\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"\\u009dK\\\"\\udad8\\udc3a\": {}, \"0\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "-4.590186947763652e-91", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "5.945174791048959e+199", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"]\": [], \"\\u0093\": {\"\\\"\": -447, \"\\u00f0\\u00d3\": [], \"\\ud89c\\udd31+~\\udb70\\udd7e\": [true], \"\\u00c8\": [null]}, \"\\u00061\": {\"\\udacd\\udc9d\\u00fe\\uda0b\\udee7\": [3], \"0\": 1}, \"0\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"]\": [], \"\\u0093\": {\"\\\"\": -447, \"\\u00f0\\u00d3\": [], \"\\ud89c\\udd31+~\\udb70\\udd7e\": [true], \"\\u00c8\": [null]}, \"\\u00061\": {\"\\udacd\\udc9d\\u00fe\\uda0b\\udee7\": [1], \"0\": 1}, \"0\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"]\": [], \"\\u0093\": {\"\\\"\": -447, \"\\u00f0\\u00d3\": [], \"\\ud89c\\udd31+~\\udb70\\udd7e\": [true], \"\\u00c8\": [null]}, \"\\u00061\": {\"]\": 0}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"]\": [], \"\\u00061\": {\"\\\"\": -447, \"\\u00f0\\u00d3\": [], \"\\ud89c\\udd31+~\\udb70\\udd7e\": [true], \"\\u00c8\": [null]}, \"0\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"]\": [], \"\\u00061\": {\"\\\"\": -447, \"\\u00f0\\u00d3\": [], \"]\": [true], \"\\u00c8\": [null]}, \"0\": 0}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "{\"]\": [], \"\\u00061\": {\"]\": 0}}", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[{}, {}, \"\"], [[null, null, true, \"[\\u0012\\u0004\\u00be\\ud94a\\udf28\\u001f\"]]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[{}, {}, \"\"], [[null, null, true, \"\"]]]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[3, {}, {}, \"\"]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[3, {}, {}, 0]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[3, {}, {}, 3]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[3, {}, 0]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[], [], {}, 3.770206616865544e-159]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[], [], [], 3.770206616865544e-159]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}
+{"input": "[[], [], 0]", "outcome": "valid", "exit_code": 0, "signal": null, "timed_out": false, "detail": ""}

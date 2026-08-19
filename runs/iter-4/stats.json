@@ -1,0 +1,65 @@
+{
+  "mode": "MOCK",
+  "validate_acceptance": 1.0,
+  "summary": {
+    "outcomes": {
+      "valid": 404,
+      "reject": 6
+    },
+    "acceptance_rate": 0.985,
+    "max_nesting_depth": 5,
+    "productions_accepted": [
+      "array",
+      "false",
+      "null",
+      "number",
+      "object",
+      "string",
+      "true"
+    ],
+    "productions_gap": [],
+    "cap_distance_mass": 0.0,
+    "novelty": 79,
+    "divergences": 6,
+    "divergence_examples": [
+      "b'[{\"W\\\\ud899\\\\udcbb\\\\u001a\": 223978986, \"\\\\ud96f\\\\ude1fA\\\\uda01\\\\udcb3H\": null, \"role\": '",
+      "b'[{\"W\\\\ud899\\\\udcbb\\\\u001a\": false, \"\\\\ud96f\\\\ude1fA\\\\uda01\\\\udcb3H\": null, \"role\": -181'",
+      "b'[{\"W\\\\ud899\\\\udcbb\\\\u001a\": false, \"\\\\u00f7\": -1.9159857106934008e+183, \"role\": -181'"
+    ],
+    "unique_crash_signatures": []
+  },
+  "probes": {
+    "unicode_escape": {
+      "parson": 1.0,
+      "oracle": 1.0
+    },
+    "big_number": {
+      "parson": 0.375,
+      "oracle": 1.0
+    },
+    "deep_nesting": {
+      "parson": 1.0,
+      "oracle": 1.0
+    },
+    "duplicate_keys": {
+      "parson": 0.0,
+      "oracle": 1.0
+    },
+    "empty_container": {
+      "parson": 1.0,
+      "oracle": 1.0
+    },
+    "near_valid_malformed": {
+      "parson": 0.286,
+      "oracle": 0.0
+    }
+  },
+  "parson_deviations": {
+    "duplicate_keys": {
+      "parson": 0.0,
+      "oracle": 1.0
+    }
+  },
+  "new_crash": false,
+  "score": 114.0
+}

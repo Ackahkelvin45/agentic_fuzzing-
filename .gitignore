@@ -1,0 +1,15 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.hypothesis/
+
+# Secrets — never commit API keys
+.env
+*.key
+
+# Build artifacts (reproducible via harness/build.sh)
+build/
+
+# OS
+.DS_Store

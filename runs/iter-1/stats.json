@@ -1,0 +1,65 @@
+{
+  "mode": "MOCK",
+  "validate_acceptance": 1.0,
+  "summary": {
+    "outcomes": {
+      "valid": 403,
+      "reject": 7
+    },
+    "acceptance_rate": 0.983,
+    "max_nesting_depth": 4,
+    "productions_accepted": [
+      "array",
+      "false",
+      "null",
+      "number",
+      "object",
+      "string",
+      "true"
+    ],
+    "productions_gap": [],
+    "cap_distance_mass": 0.0,
+    "novelty": 72,
+    "divergences": 7,
+    "divergence_examples": [
+      "b'[[true, false, -18598, \"\"], {\"g\\\\u0000\\\\u00d1\": [], \"\\\\u009d\\\\u0013\": [-9.4391823951'",
+      "b'[[], [null], [{}], {\"J\\\\ud809\\\\udfb2\": null, \"6\": \"\\\\u008f\\\\ud9d0\\\\udfb5\\\\ud8f7\\\\uddc0T'",
+      "b'[[], [null], [{}], {\"\\\\\"~\\\\ud96e\\\\udf52\\\\udaab\\\\udcb8\": null, \"6\": \"\\\\u008f\\\\ud9d0\\\\udfb'"
+    ],
+    "unique_crash_signatures": []
+  },
+  "probes": {
+    "unicode_escape": {
+      "parson": 1.0,
+      "oracle": 1.0
+    },
+    "big_number": {
+      "parson": 0.375,
+      "oracle": 1.0
+    },
+    "deep_nesting": {
+      "parson": 1.0,
+      "oracle": 1.0
+    },
+    "duplicate_keys": {
+      "parson": 0.0,
+      "oracle": 1.0
+    },
+    "empty_container": {
+      "parson": 1.0,
+      "oracle": 1.0
+    },
+    "near_valid_malformed": {
+      "parson": 0.286,
+      "oracle": 0.0
+    }
+  },
+  "parson_deviations": {
+    "duplicate_keys": {
+      "parson": 0.0,
+      "oracle": 1.0
+    }
+  },
+  "new_crash": false,
+  "score": 107.0
+}
