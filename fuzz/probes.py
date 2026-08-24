@@ -1,7 +1,8 @@
 """probes.py — single-feature probe strategies for UNCONFOUNDED attribution.
 
-Motivation (from the proxy-signal critique): parson returns no error message, so
-we cannot know WHICH feature caused a rejection. Bucketing a multi-feature input
+Motivation (from the proxy-signal critique): even though json-parser DOES return
+a per-input error string, we still cannot get an AGGREGATE picture of which
+feature is being rejected across a run from that alone. Bucketing a multi-feature input
 into all its feature buckets is statistically confounded — one broken \\uXXXX
 implementation would tank the "big-number" and "deep-nesting" buckets purely by
 co-occurrence. The fix is a controlled experiment: generate inputs that differ
@@ -37,7 +38,7 @@ _big_numbers = st.sampled_from([
 ])
 probe_bignum = _big_numbers.map(lambda n: "[" + n + "]")
 
-# 3. deep-but-legal nesting, biased toward parson's MAX_NESTING (2048) boundary.
+# 3. deep nesting (json-parser has no cap; deep nesting stresses the first pass).
 probe_deepnest = st.integers(min_value=1500, max_value=2100).map(
     lambda d: "[" * d + "]" * d
 )
@@ -52,8 +53,9 @@ probe_empty = st.sampled_from(['{}', '[]', '[[]]', '{"a":{}}', '[{},{}]'])
 
 # 6. near-valid-but-malformed (exercises the REJECT path deliberately, one defect).
 probe_near_valid = st.sampled_from([
-    '{"a":1,}', '[1,2,]', '{"a" 1}', '{"a":}', '"unterminated', '[1 2]', '{,}',
-])
+    '{"a" 1}', '{"a":}', '"unterminated', '[1 2]', '{,}', '[1,,2]', '[,1]',
+])  # NB: a SINGLE trailing comma ('[1,2,]') is VALID in json-parser, so it is
+   # deliberately NOT here — these are inputs json-parser genuinely rejects.
 
 PROBES: dict[str, st.SearchStrategy] = {
     "unicode_escape": probe_unicode,
@@ -68,8 +70,8 @@ PROBES: dict[str, st.SearchStrategy] = {
 # repair), vs. which are expected to be rejected (near_valid_malformed).
 PROBE_EXPECT_VALID = {
     "unicode_escape": True,
-    "big_number": True,      # parson may reject non-finite; treated as "mostly valid"
-    "deep_nesting": True,    # legal below 2048; above -> parson rejects cleanly
+    "big_number": True,      # json-parser ACCEPTS non-finite (overflow -> inf)
+    "deep_nesting": True,    # json-parser has no depth cap -> always valid
     "duplicate_keys": True,
     "empty_container": True,
     "near_valid_malformed": False,

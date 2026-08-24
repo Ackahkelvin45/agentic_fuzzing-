@@ -29,7 +29,7 @@ signal. Plan:
    <fn>`), dropping addresses, offsets, and file:line noise, and **filtering
    system/interceptor frames** (dyld, sanitizer runtime, and bare libc
    interceptors like `memcpy`/`strlen`) so the signature reflects the real
-   parson call site, not the interceptor.
+   application call site, not the interceptor.
 3. Signature = `bug_class | frame1>frame2>frame3` (folder id = its sha1 prefix).
 
 Refinements adopted after an independent triage-design review:

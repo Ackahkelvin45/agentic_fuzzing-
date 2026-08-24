@@ -1,13 +1,13 @@
 {
-  "mode": "MOCK",
-  "validate_acceptance": 1.0,
+  "mode": "deepseek-chat",
+  "validate_acceptance": 0.46666666666666673,
   "summary": {
     "outcomes": {
-      "valid": 404,
-      "reject": 6
+      "valid": 284,
+      "reject": 66
     },
-    "acceptance_rate": 0.985,
-    "max_nesting_depth": 5,
+    "acceptance_rate": 0.811,
+    "max_nesting_depth": 2039,
     "productions_accepted": [
       "array",
       "false",
@@ -18,48 +18,65 @@
       "true"
     ],
     "productions_gap": [],
-    "cap_distance_mass": 0.0,
-    "novelty": 79,
-    "divergences": 6,
+    "cap_distance_mass": 0.317,
+    "novelty": 32,
+    "divergences": 17,
     "divergence_examples": [
-      "b'[{\"W\\\\ud899\\\\udcbb\\\\u001a\": 223978986, \"\\\\ud96f\\\\ude1fA\\\\uda01\\\\udcb3H\": null, \"role\": '",
-      "b'[{\"W\\\\ud899\\\\udcbb\\\\u001a\": false, \"\\\\ud96f\\\\ude1fA\\\\uda01\\\\udcb3H\": null, \"role\": -181'",
-      "b'[{\"W\\\\ud899\\\\udcbb\\\\u001a\": false, \"\\\\u00f7\": -1.9159857106934008e+183, \"role\": -181'"
+      "b'{\"a\":1,}'",
+      "b'NaN'",
+      "b'\"bad\\\\x\"'"
     ],
-    "unique_crash_signatures": []
+    "unique_crash_signatures": [],
+    "reject_reasons_sample": [
+      [
+        "1:0: Unexpected EOF in string",
+        23
+      ],
+      [
+        "1:0: Expected digit after `e`",
+        10
+      ],
+      [
+        "1:0: Invalid character value `u`",
+        6
+      ],
+      [
+        "1:0: Unexpected `",
+        5
+      ],
+      [
+        "1:0: Unknown value",
+        4
+      ]
+    ]
   },
   "probes": {
     "unicode_escape": {
-      "parson": 1.0,
+      "target": 1.0,
       "oracle": 1.0
     },
     "big_number": {
-      "parson": 0.375,
+      "target": 1.0,
       "oracle": 1.0
     },
     "deep_nesting": {
-      "parson": 1.0,
+      "target": 1.0,
       "oracle": 1.0
     },
     "duplicate_keys": {
-      "parson": 0.0,
+      "target": 1.0,
       "oracle": 1.0
     },
     "empty_container": {
-      "parson": 1.0,
+      "target": 1.0,
       "oracle": 1.0
     },
     "near_valid_malformed": {
-      "parson": 0.286,
+      "target": 0.0,
       "oracle": 0.0
     }
   },
-  "parson_deviations": {
-    "duplicate_keys": {
-      "parson": 0.0,
-      "oracle": 1.0
-    }
-  },
+  "target_deviations": {},
   "new_crash": false,
-  "score": 114.0
+  "score": 73.34
 }

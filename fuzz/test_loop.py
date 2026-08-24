@@ -18,6 +18,7 @@ from agent import (  # noqa: E402
     decide_refinement, extract_strategy, screen_code, summarize, _score,
     _productions_structural, _nesting_depth, StopController, refine_prompt,
     seed_prompt, EXAMPLES_PER_RUN, VALIDATE_EXAMPLES, PROBE_EXAMPLES_EACH,
+    GATE_COST, GATE_SEEDS, NOVELTY_REVERT_MARGIN, ACC_REVERT_MARGIN,
 )
 from oracle import oracle_accepts, classify_divergence  # noqa: E402
 from probes import PROBES, PROBE_EXPECT_VALID  # noqa: E402
@@ -110,15 +111,22 @@ def main() -> int:
     # --- oracle robustness ---------------------------------------------------
     check("oracle survives deep nesting (no RecursionError escape)",
           oracle_accepts(b"[" * 20000 + b"]" * 20000) in (True, False))
-    check("oracle: parson-lenient divergence detected",
-          getattr(classify_divergence(True, b"1abc"), "kind", None) == "parson-lenient")
+    # json-parser accepts a single trailing comma; strict json rejects it -> lenient.
+    check("oracle: jsonparser-lenient divergence detected",
+          getattr(classify_divergence(True, b"[1,2,]"), "kind", None) == "jsonparser-lenient")
     check("oracle: agreement yields None", classify_divergence(True, b'{"a":1}') is None)
 
     # --- assignment constraints are actually the configured numbers ---------
     check("per-input timeout is 5s (assignment)", TIMEOUT_S == 5)
     check("examples per iteration is 500 (assignment)", EXAMPLES_PER_RUN == 500)
-    budget = VALIDATE_EXAMPLES + len(PROBES) * PROBE_EXAMPLES_EACH
-    check("gate+probes fit inside the 500 budget", budget < EXAMPLES_PER_RUN, str(budget))
+    # Multi-seed gate spends GATE_COST (= len(GATE_SEEDS) * VALIDATE_EXAMPLES).
+    check("gate cost == seeds x validate", GATE_COST == len(GATE_SEEDS) * VALIDATE_EXAMPLES)
+    budget = GATE_COST + len(PROBES) * PROBE_EXAMPLES_EACH
+    check("multi-seed gate+probes still fit inside the 500 budget",
+          budget < EXAMPLES_PER_RUN, str(budget))
+    # Noise-tolerance on the quiet-failure revert (was: any drop tripped it).
+    check("revert needs a real novelty drop, not jitter", NOVELTY_REVERT_MARGIN >= 3)
+    check("revert needs a real acceptance rise, not jitter", ACC_REVERT_MARGIN >= 0.02)
 
     # --- StopController caps -------------------------------------------------
     sc = StopController(max_iters=2)
@@ -141,7 +149,7 @@ def main() -> int:
                 ok = name in ("big_number",)  # may exceed double range by design
             check(f"probe '{name}' emits parseable JSON", ok, ex[:40])
     deep_ex = str(PROBES["deep_nesting"].example())
-    check("deep_nesting probe targets the 2048 cap band",
+    check("deep_nesting probe targets the deep band",
           1500 <= _nesting_depth(deep_ex) <= 2100, str(_nesting_depth(deep_ex)))
 
     # --- summarize sanity ----------------------------------------------------

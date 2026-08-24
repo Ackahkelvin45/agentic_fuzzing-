@@ -2,7 +2,7 @@
  * triage_test.c — a synthetic multi-bug harness used ONLY to test the triage
  * pipeline (signature dedup / minimize / verify) on REAL sanitizer reports.
  * Different marker substrings crash in different named functions, producing
- * distinct crash signatures. Not parson; never a real finding.
+ * distinct crash signatures. Not json-parser; never a real finding.
  */
 #include <stdio.h>
 #include <stdlib.h>

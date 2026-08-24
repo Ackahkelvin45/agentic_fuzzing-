@@ -62,15 +62,20 @@ def main() -> int:
                      BUILD / "_hang", sanitize=False)          # never returns
 
     print("== classifier branches (default harness) ==")
-    r = run_once(HARNESS, b'{"a":[1,2,3],"b":null}')
+    # NB: use NON-object inputs here. On the default (full-sanitizer) build, any
+    # object-with-member trips json-parser's confirmed first-pass UB (finding #1,
+    # crashes/), so `{"a":1}` aborts rather than classifying valid/reject.
+    r = run_once(HARNESS, b'[1,2,3,null]')
     check("VALID  on well-formed JSON", r.outcome is Outcome.VALID, r.signature_source())
 
-    r = run_once(HARNESS, b'{"a":')
+    r = run_once(HARNESS, b'[1,2')
     check("REJECT on malformed JSON", r.outcome is Outcome.REJECT, r.signature_source())
 
-    r = run_once(HARNESS, b'{"a":1}\x00tail')
-    check("SKIP   on embedded NUL (not reject)",
-          r.outcome is Outcome.SKIP and r.detail == "embedded-nul", r.signature_source())
+    # json-parser's length-taking API tests embedded NUL faithfully (no SKIP,
+    # unlike the parson harness): a NUL inside a string is a well-formed REJECT.
+    r = run_once(HARNESS, b'"a\x00b"')
+    check("embedded NUL is TESTED, not skipped",
+          r.outcome is not Outcome.SKIP, r.signature_source())
 
     big = b"a" * (64 * 1024 * 1024 + 8)
     r = run_once(HARNESS, big)
