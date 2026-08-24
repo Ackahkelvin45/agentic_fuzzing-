@@ -5,19 +5,20 @@ Runs with no API key via llm.py's MOCK mode (canned strategy, zero spend), or
 against DeepSeek / any OpenAI-compatible provider once a key is set.
 
 PROXY SIGNAL (blackbox — no coverage instrumentation is available):
-  primary   production coverage, nesting depth vs parson's 2048 cap
+  primary   production coverage, nesting depth (json-parser has no cap)
   repair    single-feature probes (probes.py) — unconfounded attribution
   objective unique crash signatures
   guardrail accepted-structure novelty (catches "acceptance up, diversity down")
 Each maps to exactly ONE nameable edit; see decide_refinement and DECISIONS.md D5.
 
-NAMED CONSTRAINT: parson's json_parse_string returns NULL with NO error message,
-so "which parser error fired" is unavailable as a signal. The "why" behind a
-rejection must therefore be reconstructed from the GENERATOR's own structure
-(see _productions_structural and probes.py), not read off the parser.
+NOTE: json-parser's json_parse_ex returns an error string on rejection, which the
+harness surfaces on stderr. A sample of those reasons is fed back to the model
+(summarize's reject_reasons_sample, Step 4.4); the single-feature probes
+(probes.py) still give the UNCONFOUNDED per-feature attribution the aggregate
+error sample cannot.
 
 DIFFERENTIAL ORACLE (oracle.py) runs every iteration as a FINDINGS channel (not
-a steering one): inputs parson accepts but a strict parser rejects are candidate
+a steering one): inputs json-parser accepts but a strict parser rejects are candidate
 leniency deviations.
 
 SECURITY: run_live executes model-generated strategy code (unavoidable here).
@@ -31,15 +32,58 @@ import argparse
 import ast
 import importlib.util
 import json
+import os
 import re
 import sys
 import time
+import traceback
 from collections import Counter
 from pathlib import Path
 
 
 class GeneratorError(Exception):
-    """The model-produced strategy failed to import or errored while drawing."""
+    """The model-produced strategy failed to import or errored while drawing.
+
+    `localized` (when set) is a `strategy.py:LINE: <source>` pointer at the
+    model-authored frame that raised — captured always, surfaced to the model
+    only when LOCALIZE_ERRORS is on (so the plumbing fix and the localization
+    experiment stay separable)."""
+
+    def __init__(self, message: str, localized: str | None = None):
+        super().__init__(message)
+        self.localized = localized
+
+
+# Experiment toggle (Path-B isolation). OFF by default: the A/C plumbing fixes
+# surface a BARE exception (type + message), matching the "still bare errors"
+# baseline. Set LOCALIZE_ERRORS=1 to also hand the model the file:line of the
+# frame that raised, to test whether localization alone closes the gap.
+LOCALIZE_ERRORS = os.environ.get("LOCALIZE_ERRORS") == "1"
+
+
+def _localize_tb(exc: BaseException) -> str | None:
+    """Deepest traceback frame that lives in a model-authored strategy file,
+    as 'basename:LINE: <source>', else None. Used to point the model at the
+    exact line it got wrong instead of a bare exception string."""
+    hit = None
+    for fs in traceback.extract_tb(exc.__traceback__):
+        base = os.path.basename(fs.filename)
+        if str(RUNS) in fs.filename or base.startswith("strategy"):
+            hit = fs
+    if hit is None:
+        return None
+    tail = f": {hit.line}" if hit.line else ""
+    return f"{os.path.basename(hit.filename)}:{hit.lineno}{tail}"
+
+
+def _fmt_gen_error(e: "GeneratorError | Exception") -> str:
+    """The message to put in a repair prompt: bare by default; with the
+    file:line appended when LOCALIZE_ERRORS is on and we have a location."""
+    msg = str(e)
+    loc = getattr(e, "localized", None)
+    if LOCALIZE_ERRORS and loc:
+        msg = f"{msg}  [raised at {loc}]"
+    return msg
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -136,7 +180,9 @@ def _nesting_depth(s: str) -> int:
 
 _PRODS = ("object", "array", "string", "number", "true", "false", "null")
 
-# parson's MAX_NESTING is 2048; we want generation mass approaching that boundary.
+# json-parser has NO nesting cap (iterative parser), but deep OBJECT nesting
+# stresses the first-pass memory measurement, so we still steer generation mass
+# toward a deep band. 2048 is a convenient depth target, not a library limit.
 CAP_DEPTH = 2048
 CAP_BAND = (1500, CAP_DEPTH)
 
@@ -204,14 +250,17 @@ def _structure_fingerprint(s: str) -> tuple:
 
 
 def summarize(samples: list[tuple[str, str]], divergences: list | None = None,
-              crash_signatures: list[str] | None = None) -> dict:
+              crash_signatures: list[str] | None = None,
+              reject_reasons: "Counter | None" = None) -> dict:
     """samples: list of (generated_input, outcome_value). Returns the proxy signal.
 
     Primary steering terms (unconfounded, need no parser feedback):
       - productions_accepted : productions that appeared AND parsed valid
-      - cap_distance_mass    : fraction of accepted inputs nested in [1500,2048]
+      - cap_distance_mass    : fraction of accepted inputs in the deep band [1500,2048]
       - novelty              : count of distinct accepted structure fingerprints
                                (the quiet-failure guardrail co-metric)
+    `reject_reasons` (Step 4.4) is a Counter of json-parser's error strings; the
+    top few are surfaced so the LLM sees WHY inputs are being rejected.
     """
     outcomes = Counter(o for _, o in samples)
     non_skip = sum(v for k, v in outcomes.items() if k != "skip")
@@ -241,6 +290,10 @@ def summarize(samples: list[tuple[str, str]], divergences: list | None = None,
         # Step 4.4: the LLM must see which unique crashes exist so far, so it can
         # steer toward that region instead of rediscovering the same bug.
         "unique_crash_signatures": sorted(crash_signatures or []),
+        # Step 4.4: a sample of WHY inputs were rejected (top reasons + counts),
+        # so the model can steer away from productions it keeps getting wrong.
+        "reject_reasons_sample": (reject_reasons.most_common(5)
+                                  if reject_reasons else []),
     }
 
 
@@ -249,6 +302,14 @@ def summarize(samples: list[tuple[str, str]], divergences: list | None = None,
 # Thresholds are deliberately explicit so the mapping is auditable, not vibes.
 CAP_MASS_TARGET = 0.05     # want >=5% of accepted inputs near the nesting cap
 PROBE_FAIL_RATE = 0.20     # a should-be-valid probe accepted <20% => broken feature
+# Quiet-failure revert margins. The guardrail used to fire on ANY novelty drop;
+# characterization showed novelty has a ~1.5 per-run std (so a two-measurement
+# difference has ~2.1 std), which made a 1-2 point jitter trip a spurious
+# revert — it fired on noise in the recorded run. Require BOTH legs to be real
+# moves: acceptance up by > ACC margin AND novelty down by > ~2 sigma. (A fully
+# stable signal needs averaging over seeds — deferred as future work.)
+NOVELTY_REVERT_MARGIN = 4    # novelty must fall by more than this (~2 sigma)
+ACC_REVERT_MARGIN = 0.05     # and acceptance must rise by more than this
 
 
 def decide_refinement(summary: dict,
@@ -266,7 +327,9 @@ def decide_refinement(summary: dict,
     #    `if prev` (not `is not None`): a gated iteration can hand us {}, which
     #    would pass an is-not-None check and then KeyError on the lookups.
     if prev and "acceptance_rate" in prev and "novelty" in prev:
-        if summary["acceptance_rate"] > prev["acceptance_rate"] and summary["novelty"] < prev["novelty"]:
+        acc_rose = summary["acceptance_rate"] - prev["acceptance_rate"] > ACC_REVERT_MARGIN
+        novelty_fell = prev["novelty"] - summary["novelty"] > NOVELTY_REVERT_MARGIN
+        if acc_rose and novelty_fell:
             return ("revert_last_edit",
                     f"acceptance {prev['acceptance_rate']}->{summary['acceptance_rate']} "
                     f"but novelty {prev['novelty']}->{summary['novelty']} (quiet failure)")
@@ -280,7 +343,7 @@ def decide_refinement(summary: dict,
     if gap:
         return ("add_or_upweight_production", gap[0])
 
-    # 3. Primary steer: push nesting depth toward the 2048 cap.
+    # 3. Primary steer: push nesting depth into the deep band (stresses first pass).
     if summary.get("cap_distance_mass", 0.0) < CAP_MASS_TARGET:
         return ("generate_nesting_toward_cap", f"target depth {CAP_BAND[0]}-{CAP_BAND[1]}")
 
@@ -308,12 +371,26 @@ def load_strategy(strategy_path: Path):
     return mod.strategy
 
 
+def _reject_reason(stderr: bytes) -> str:
+    """Pull json-parser's error string out of the harness stderr ('reject: <msg>').
+    Empty when the parser gave no message (or the outcome was not a rejection)."""
+    if not stderr:
+        return ""
+    lines = stderr.decode("utf-8", "replace").strip().splitlines()
+    if not lines:
+        return ""
+    last = lines[-1]
+    reason = last[len("reject: "):] if last.startswith("reject: ") else last
+    return reason.strip()[:120]
+
+
 def run_strategy(harness: Path, strategy, max_examples: int,
-                 run_deadline_s: float = 600.0, log_path: Path | None = None):
+                 run_deadline_s: float = 600.0, log_path: Path | None = None,
+                 run_seed: int | None = None):
     """Execute `strategy` through the harness.
 
     Returns (samples, divergences): samples is [(input, outcome)]; divergences
-    is the list of differential-oracle disagreements (parson vs. strict json)
+    is the list of differential-oracle disagreements (json-parser vs. strict json)
     collected on the same pass, so the oracle stays wired into every run.
 
     Raises GeneratorError if the strategy errors while drawing (e.g. produces an
@@ -321,21 +398,30 @@ def run_strategy(harness: Path, strategy, max_examples: int,
     that iteration instead of aborting the whole loop. `run_deadline_s` is a
     per-run wall-clock backstop (default 10 min, per the assignment) after which
     remaining draws are skipped so a pathological generator can't run forever.
+
+    `run_seed` fixes Hypothesis's PRNG so a run is reproducible (same seed ->
+    same draws). None keeps it random — the right default for a FUZZER, which
+    wants input diversity across runs. Measurement/CI paths pass an explicit
+    seed and vary it to report mean+/-std instead of trusting one noisy draw.
+    The example DATABASE is always disabled here: a persisted example store made
+    runs stateful, so a strategy's score depended on what earlier runs had saved
+    — a hidden confound behind the un-reproducible trajectory the critic found.
     """
     _ensure_fuzz_on_path()
     from runner import run_once, Outcome  # noqa: E402
     from oracle import classify_divergence  # noqa: E402
-    from hypothesis import given, settings, HealthCheck
+    from hypothesis import given, settings, seed as hyp_seed, HealthCheck
     from hypothesis.errors import FlakyFailure
 
     samples: list[tuple[str, str]] = []
     divergences: list = []
     crash_inputs: list[bytes] = []  # includes Hypothesis's shrink attempts
+    reject_reasons: Counter = Counter()  # json-parser's error strings (Step 4.4)
     log_records: list[dict] | None = [] if log_path is not None else None
     start = time.monotonic()
     truncated = [False]
 
-    @settings(max_examples=max_examples, deadline=None,
+    @settings(max_examples=max_examples, deadline=None, database=None,
               suppress_health_check=[HealthCheck.function_scoped_fixture])
     @given(s=strategy)
     def _t(s) -> None:
@@ -346,9 +432,12 @@ def run_strategy(harness: Path, strategy, max_examples: int,
         data = s if isinstance(s, bytes) else str(s).encode("utf-8", "surrogatepass")
         r = run_once(harness, data)
         samples.append((text, r.outcome.value))
+        reason = _reject_reason(r.stderr) if r.outcome is Outcome.REJECT else ""
+        if reason:
+            reject_reasons[reason] += 1
         if log_records is not None:
             # Assignment Step 4.3: log PER INPUT — crash/no-crash, the sanitizer
-            # output when it crashed, and the exit code/signal when it didn't.
+            # output when it crashed, and the exit code / parser error otherwise.
             rec = {
                 "input": text[:2000],
                 "outcome": r.outcome.value,
@@ -359,6 +448,8 @@ def run_strategy(harness: Path, strategy, max_examples: int,
             }
             if r.outcome is Outcome.CRASH and r.stderr:
                 rec["sanitizer_output"] = r.stderr.decode("utf-8", "replace")[:4000]
+            elif reason:
+                rec["reject_reason"] = reason  # json-parser's "why rejected" string
             log_records.append(rec)
         if r.outcome in (Outcome.VALID, Outcome.REJECT):
             d = classify_divergence(r.outcome is Outcome.VALID, data)
@@ -370,8 +461,9 @@ def run_strategy(harness: Path, strategy, max_examples: int,
             # Raising here makes Hypothesis shrink the crashing input for us.
             raise AssertionError(f"crash: {r.signature_source()}")
 
+    runnable = hyp_seed(run_seed)(_t) if run_seed is not None else _t
     try:
-        _t()
+        runnable()
     except AssertionError as e:
         print(f"[loop] crash surfaced: {e}")
     except FlakyFailure as e:
@@ -381,24 +473,25 @@ def run_strategy(harness: Path, strategy, max_examples: int,
         # mistaken for a broken generator, or we'd silently discard real bugs.
         print(f"[loop] flaky crash surfaced (kept): {str(e)[:120]}")
     except Exception as e:  # noqa: BLE001 - a bad generator must not kill the loop
-        raise GeneratorError(f"{type(e).__name__}: {e}"[:200]) from e
+        raise GeneratorError(f"{type(e).__name__}: {e}"[:200],
+                             localized=_localize_tb(e)) from e
     if truncated[0]:
         print(f"[loop] run hit {run_deadline_s/60:.0f}-min backstop; truncated")
     if log_path is not None and log_records is not None:
         with log_path.open("w") as fh:
             for rec in log_records:
                 fh.write(json.dumps(rec) + "\n")
-    return samples, divergences, crash_inputs
+    return samples, divergences, crash_inputs, reject_reasons
 
 
 def run_probes(harness: Path, per_probe: int = 20) -> dict[str, dict]:
-    """Measure each SINGLE-FEATURE probe against BOTH parson and the strict
+    """Measure each SINGLE-FEATURE probe against BOTH json-parser and the strict
     oracle -> unconfounded repair signal. Returns
-    {probe_name: {"parson": rate, "oracle": rate}}. Real; needs a built harness.
+    {probe_name: {"target": rate, "oracle": rate}}. Real; needs a built harness.
 
-    Two rates are needed to disambiguate a low parson-acceptance:
-      parson low + oracle low  -> the GENERATOR emits malformed feature (repair)
-      parson low + oracle high -> parson DEVIATION (finding), not a generator bug
+    Two rates are needed to disambiguate a low target-acceptance:
+      target low + oracle low  -> the GENERATOR emits malformed feature (repair)
+      target low + oracle high -> json-parser DEVIATION (finding), not a generator bug
     """
     _ensure_fuzz_on_path()
     from runner import run_once  # noqa: E402
@@ -424,17 +517,17 @@ def run_probes(harness: Path, per_probe: int = 20) -> dict[str, dict]:
         _t()
         non_skip = sum(v for k, v in counts.items() if k != "skip")
         rates[name] = {
-            "parson": round(counts.get("valid", 0) / non_skip, 3) if non_skip else 0.0,
+            "target": round(counts.get("valid", 0) / non_skip, 3) if non_skip else 0.0,
             "oracle": round(oracle_ok[0] / oracle_ok[1], 3) if oracle_ok[1] else 0.0,
         }
     return rates
 
 
 def classify_probes(rates: dict[str, dict]) -> tuple[dict[str, float], dict[str, dict]]:
-    """Split probe results into (generator_broken, parson_deviations).
+    """Split probe results into (generator_broken, target_deviations).
 
-    generator_broken: {name: parson_rate}   -> feed to decide_refinement (repair)
-    parson_deviations: {name: {...}}         -> findings (parson stricter than RFC)
+    generator_broken: {name: target_rate}   -> feed to decide_refinement (repair)
+    target_deviations: {name: {...}}         -> findings (json-parser vs RFC)
     """
     from probes import PROBE_EXPECT_VALID  # noqa: E402
     broken: dict[str, float] = {}
@@ -442,11 +535,11 @@ def classify_probes(rates: dict[str, dict]) -> tuple[dict[str, float], dict[str,
     for name, r in rates.items():
         if not PROBE_EXPECT_VALID.get(name):
             continue  # near_valid_malformed is meant to be rejected
-        if r["parson"] < PROBE_FAIL_RATE:
+        if r["target"] < PROBE_FAIL_RATE:
             if r["oracle"] >= 0.5:
-                deviations[name] = r          # parson rejects valid JSON = finding
+                deviations[name] = r          # json-parser vs strict oracle = deviation
             else:
-                broken[name] = r["parson"]     # generator emits malformed = repair
+                broken[name] = r["target"]    # generator emits malformed = repair
     return broken, deviations
 
 
@@ -466,24 +559,37 @@ _REQUIREMENTS = """\
 Requirements for the `strategy`:
 - Generate strings in the JSON grammar below. Use st.recursive (or @st.composite)
   for the recursive obj/arr productions — do NOT flatten to a big random string.
-- Deliberately cover edge cases: empty {} and [], deep-but-legal nesting,
-  duplicate keys, extreme numeric magnitudes/exponents, \\uXXXX and surrogate
-  escapes, and near-valid-but-malformed inputs (trailing commas, missing colons,
-  unterminated strings).
-- Respect the parser realities in the adaptation notes: never emit a raw NUL
-  byte, and keep nesting at or below 2048 (deeper is cleanly rejected).
-- NOTE on duplicate keys and non-finite numbers: parson REJECTS both, but they
-  are still valuable inputs — they exercise the object hash-table and number
-  paths and are required edge cases. Keep generating them; just expect them to
-  be reported as rejections rather than treating that as a generator defect.
-- The output must be `str` (the candidate JSON text)."""
+- Deliberately cover edge cases: empty {} and [], deep nesting, duplicate keys,
+  extreme numeric magnitudes/exponents (including overflow like 1e309), \\uXXXX
+  and surrogate escapes, embedded NUL/control bytes, and near-valid-but-malformed
+  inputs (double commas, missing colons, unterminated strings, leading +/.5/01).
+- Respect the json-parser realities in the adaptation notes: there is NO nesting
+  cap (vary depth freely), and bias toward OBJECTS WITH MEMBERS (the stressed
+  first-pass path). Emitting a raw NUL byte is allowed and encouraged — the
+  harness tests it faithfully.
+- NOTE: json-parser ACCEPTS duplicate keys, a single trailing comma, non-finite
+  numbers, and a lone `-`. These are still valuable edge inputs; expect them to
+  be accepted rather than treating acceptance as a defect.
+- The output must be `str` (the candidate JSON text; NUL/control chars are ok).
+- API pitfall: `st.tuples(a, b)` DRAWS TUPLES, not strings. Always `.map` a tuple
+  to a joined string before combining; never pass tuples into `",".join(...)`."""
 
 
-def seed_prompt() -> list[dict]:
+def seed_prompt(prev_error: str | None = None) -> list[dict]:
     grammar = GRAMMAR_FILE.read_text()
     notes = ADAPT_FILE.read_text()
+    # Path-A fix: a build-rejected attempt with no working baseline still
+    # re-seeds from the grammar, but must NOT re-seed blind — feed the previous
+    # failure back so the model stops repeating it (e.g. a hallucinated
+    # `st.json_strings`). This is the model's own error, not a hint at the answer.
+    retry = ""
+    if prev_error:
+        retry = ("\n\n=== your previous attempt was REJECTED before it ran ===\n"
+                 f"{prev_error}\n"
+                 "Do not repeat this failure. Use only real Hypothesis APIs and "
+                 "keep the module internally consistent.")
     user = (f"{_REQUIREMENTS}\n\n=== JSON grammar (ANTLR) ===\n{grammar}\n\n"
-            f"=== parson adaptation notes ===\n{notes}\n\n"
+            f"=== json-parser adaptation notes ===\n{notes}{retry}\n\n"
             f"Return the full module as one ```python code block.")
     return [{"role": "system", "content": SYSTEM_MSG},
             {"role": "user", "content": user}]
@@ -591,19 +697,28 @@ def screen_code(code: str) -> None:
             raise ValueError(f"disallowed name: {node.id}")
 
 
-def validate_generator(strategy, harness: Path, n: int = 40) -> float:
+def validate_generator(strategy, harness: Path, n: int = 40,
+                       run_seed: int | None = None) -> float:
     """Acceptance sanity-check: run a small sample and return acceptance rate.
     A near-zero rate means the generator is being rejected at the front door."""
-    samples, _, _ = run_strategy(harness, strategy, n)
+    samples, _, _, _ = run_strategy(harness, strategy, n, run_seed=run_seed)
     return summarize(samples)["acceptance_rate"]
 
 
 ACCEPT_GATE = 0.05  # below this the generator is 'rejected at the front door'
+# Validate across several PRNG seeds, not one. Characterization found a
+# committed strategy that ran fine on its (lucky) original draw but RAISES on
+# other seeds — a single-seed gate passed it. Each seed gets the FULL validate
+# sample (measured: ~20+ draws/seed are needed to surface that particular
+# fragility; a thinner split missed it). This reduces — not eliminates — the
+# chance a seed-fragile strategy slips through, at a fixed, budgeted cost.
+GATE_SEEDS = (0, 1, 2)
+GATE_COST = len(GATE_SEEDS) * VALIDATE_EXAMPLES  # examples the gate spends/iter
 
 
 def _score(summary: dict) -> float:
     """Higher is better: reward coverage breadth, accepted-structure novelty, and
-    depth mass near the 2048 cap.
+    depth mass in the deep-nesting band.
 
     Deliberately does NOT encode "a crash happened". An earlier version returned
     1e6 on a crash, which made the tolerance band (10% of best) ~1e5 — so every
@@ -626,17 +741,28 @@ def build_strategy(messages: list[dict], idir: Path, tag: str, stop, config):
     try:
         strategy = load_strategy(idir / f"strategy{tag}.py")
     except Exception as e:  # noqa: BLE001
-        raise GeneratorError(f"import: {type(e).__name__}: {e}"[:200]) from e
+        raise GeneratorError(f"import: {type(e).__name__}: {e}"[:200],
+                             localized=_localize_tb(e)) from e
     return code, strategy
 
 
-def safe_validate(strategy, harness: Path, n: int = 40) -> float:
-    """Acceptance sanity-check that never raises: a generator that errors while
-    drawing counts as acceptance 0.0 (a failed generator, not a loop crash)."""
-    try:
-        return validate_generator(strategy, harness, n=n)
-    except GeneratorError:
-        return 0.0
+def safe_validate(strategy, harness: Path, n: int = 40):
+    """Acceptance sanity-check that never raises, across several PRNG seeds so a
+    SEED-FRAGILE strategy (runs on one lucky draw, raises/collapses on others)
+    can't slip through the gate. Returns (mean_rate, error): error is set if the
+    generator raised on ANY seed. The example budget is split across seeds, so
+    the gate's cost is a fixed GATE_COST examples (accounted for in run_live).
+
+    Aiming the repair at the REAL exception (rather than misreading a throw as a
+    low acceptance rate) is what stops the model chasing 'emit more valid JSON'
+    when the code was actually crashing during generation."""
+    rates = []
+    for sd in GATE_SEEDS:
+        try:
+            rates.append(validate_generator(strategy, harness, n=n, run_seed=sd))
+        except GeneratorError as e:
+            return 0.0, e  # fragile on even one seed => disqualify, route the fix
+    return sum(rates) / len(rates), None
 
 
 def run_live(harness: Path, max_examples: int) -> int:
@@ -665,6 +791,7 @@ def run_live(harness: Path, max_examples: int) -> int:
     best_summary: dict | None = None
     best_score = float("-inf")
     action: tuple[str, str] = ("seed", "initial seed from grammar")
+    last_build_error: str | None = None  # Path-A: carried into the next re-seed
 
     while stop.start_iteration():
         it = stop.iters
@@ -674,8 +801,11 @@ def run_live(harness: Path, max_examples: int) -> int:
         # Re-seed whenever we have no usable strategy yet. Keying on `it == 1`
         # alone meant a failed first iteration sent the model the literal text
         # "None" as the current strategy, silently burning every later iteration.
+        # Path-A fix: when re-seeding after a build rejection, pass the previous
+        # error in — do NOT gate feedback on having a non-None baseline, which
+        # used to discard the error and re-send a byte-identical blind prompt.
         if current_code is None:
-            messages = seed_prompt()
+            messages = seed_prompt(last_build_error)
         else:
             messages = refine_prompt(current_code, prev_summary or {}, action)
         (idir / "prompt.md").write_text(messages[-1]["content"])
@@ -684,37 +814,53 @@ def run_live(harness: Path, max_examples: int) -> int:
         try:
             code, strategy = build_strategy(messages, idir, "", stop, config)
         except (ValueError, GeneratorError) as e:
-            print(f"[live] iter {it}: strategy rejected ({e}); rolling back")
-            action = ("fix_generator_error", str(e))
+            detail = _fmt_gen_error(e)
+            print(f"[live] iter {it}: strategy rejected ({detail}); rolling back")
+            action = ("fix_generator_error", detail)
+            last_build_error = detail            # so the next re-seed isn't blind
             current_code = best_code or current_code  # don't advance on garbage
-            evolution.append(f"iter {it}: build rejected ({e}) -> rollback")
+            evolution.append(f"iter {it}: build rejected ({detail}) -> rollback")
             continue
+        last_build_error = None  # a clean build clears the carried error
 
         # Budget the assignment's 500-examples-per-iteration across every
         # harness-facing sample this iteration makes.
         from probes import PROBES  # noqa: E402
         probe_budget = len(PROBES) * PROBE_EXAMPLES_EACH
-        main_budget = max(1, max_examples - VALIDATE_EXAMPLES - probe_budget)
+        main_budget = max(1, max_examples - GATE_COST - probe_budget)
 
-        acc0 = safe_validate(strategy, harness, n=VALIDATE_EXAMPLES)
+        acc0, gen_err = safe_validate(strategy, harness, n=VALIDATE_EXAMPLES)
         if acc0 < ACCEPT_GATE:
-            main_budget = max(1, main_budget - VALIDATE_EXAMPLES)  # repair check
+            main_budget = max(1, main_budget - GATE_COST)  # repair re-validate
             # F2: gate, don't just warn — one in-iteration repair re-prompt.
-            print(f"[live] iter {it}: acceptance {acc0:.0%} < gate; one repair re-prompt")
-            fix_msgs = refine_prompt(code, {"validate_acceptance": acc0},
-                                     ("raise_acceptance",
-                                      f"only {acc0:.0%} accepted — emit mostly VALID JSON"))
+            # Path-C fix: if the generator RAISED, aim the repair at that real
+            # exception; only truly-low acceptance gets the 'emit valid JSON'
+            # nudge. Previously every sub-gate result was reported to the model
+            # as "0% accepted", so an exception was mis-repaired as bad output.
+            if gen_err is not None:
+                detail = _fmt_gen_error(gen_err)
+                print(f"[live] iter {it}: generator raised ({detail}); one repair re-prompt")
+                fix_summary = {"generator_error": str(gen_err)}
+                fix_action = ("fix_generator_error", detail)
+            else:
+                print(f"[live] iter {it}: acceptance {acc0:.0%} < gate; one repair re-prompt")
+                fix_summary = {"validate_acceptance": acc0}
+                fix_action = ("raise_acceptance",
+                              f"only {acc0:.0%} accepted — emit mostly VALID JSON")
+            fix_msgs = refine_prompt(code, fix_summary, fix_action)
             try:
                 code2, strat2 = build_strategy(fix_msgs, idir, "_fix", stop, config)
-                acc2 = safe_validate(strat2, harness, n=VALIDATE_EXAMPLES)
+                acc2, gen_err2 = safe_validate(strat2, harness, n=VALIDATE_EXAMPLES)
                 if acc2 >= acc0:
-                    code, strategy, acc0 = code2, strat2, acc2
+                    code, strategy, acc0, gen_err = code2, strat2, acc2, gen_err2
             except (ValueError, GeneratorError) as e:
-                print(f"[live] iter {it}: repair failed ({e})")
+                print(f"[live] iter {it}: repair failed ({_fmt_gen_error(e)})")
             if acc0 < ACCEPT_GATE:  # still bad: skip the expensive full run
                 (idir / "stats.json").write_text(json.dumps(
-                    {"validate_acceptance": acc0, "gated": True}, indent=2))
-                action = ("raise_acceptance", f"still {acc0:.0%} after one repair")
+                    {"validate_acceptance": acc0, "gated": True,
+                     "generator_error": str(gen_err) if gen_err else None}, indent=2))
+                action = (("fix_generator_error", _fmt_gen_error(gen_err)) if gen_err
+                          else ("raise_acceptance", f"still {acc0:.0%} after one repair"))
                 # Keep prev_summary as-is (possibly None). Substituting {} here
                 # used to pass decide_refinement's `is not None` guard and then
                 # KeyError, killing the run before cost.md was ever written.
@@ -724,18 +870,20 @@ def run_live(harness: Path, max_examples: int) -> int:
 
         # --- full run (F1: run_strategy may raise GeneratorError) ---
         try:
-            samples, divergences, crash_inputs = run_strategy(
+            samples, divergences, crash_inputs, reject_reasons = run_strategy(
                 harness, strategy, main_budget,
                 run_deadline_s=min(600.0, max(1.0, stop.deadline - time.monotonic())),
                 log_path=idir / "per_input_log.jsonl")
         except GeneratorError as e:
-            print(f"[live] iter {it}: generator errored mid-run ({e}); rolling back")
-            action = ("fix_generator_error", str(e))
+            detail = _fmt_gen_error(e)
+            print(f"[live] iter {it}: generator errored mid-run ({detail}); rolling back")
+            action = ("fix_generator_error", detail)
             current_code = best_code or code
-            evolution.append(f"iter {it}: mid-run error ({e}) -> rollback")
+            evolution.append(f"iter {it}: mid-run error ({detail}) -> rollback")
             continue
 
-        summary = summarize(samples, divergences, sorted(known_signatures))
+        summary = summarize(samples, divergences, sorted(known_signatures),
+                            reject_reasons=reject_reasons)
         probe_rates = run_probes(harness, per_probe=PROBE_EXAMPLES_EACH)
         broken, deviations = classify_probes(probe_rates)
         new_crash = "crash" in summary["outcomes"]
@@ -748,7 +896,7 @@ def run_live(harness: Path, max_examples: int) -> int:
             "validate_acceptance": acc0,
             "summary": summary,
             "probes": probe_rates,
-            "parson_deviations": deviations,
+            "target_deviations": deviations,
             "new_crash": new_crash,
             "score": sc,
         }, indent=2))
@@ -805,7 +953,7 @@ def run_live(harness: Path, max_examples: int) -> int:
             (idir / "stats.json").write_text(json.dumps({
                 "mode": "MOCK" if config.mock else config.model,
                 "validate_acceptance": acc0, "summary": summary,
-                "probes": probe_rates, "parson_deviations": deviations,
+                "probes": probe_rates, "target_deviations": deviations,
                 "new_crash": new_crash, "score": sc,
             }, indent=2))
             (idir / "triage.json").write_text(json.dumps(grouped, indent=2))
@@ -831,8 +979,8 @@ def run_live(harness: Path, max_examples: int) -> int:
 
 def run_replay(harness: Path, iter_dir: Path, max_examples: int) -> int:
     strategy = load_strategy(iter_dir / "strategy.py")
-    samples, divergences, _ = run_strategy(harness, strategy, max_examples)
-    print(f"[replay] {iter_dir.name}: {json.dumps(summarize(samples, divergences))}")
+    samples, divergences, _, rr = run_strategy(harness, strategy, max_examples)
+    print(f"[replay] {iter_dir.name}: {json.dumps(summarize(samples, divergences, reject_reasons=rr))}")
     return 0
 
 
@@ -857,8 +1005,8 @@ def run_dry(harness: Path, max_examples: int) -> int:
     current = "canned_seed_strategy"
     while stop.start_iteration():
         print(f"[dry-run] --- iteration {stop.iters} (strategy={current}) ---")
-        samples, divergences, _ = run_strategy(harness, canned, max_examples)
-        summary = summarize(samples, divergences)
+        samples, divergences, _, rr = run_strategy(harness, canned, max_examples)
+        summary = summarize(samples, divergences, reject_reasons=rr)
         # "validate": acceptance sanity check
         if summary["acceptance_rate"] < 0.05:
             print(f"[dry-run] validate: acceptance {summary['acceptance_rate']} "
@@ -880,7 +1028,7 @@ def _to_jsonish(obj) -> str:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="agentic fuzzing loop (parson/JSON)")
+    ap = argparse.ArgumentParser(description="agentic fuzzing loop (json-parser/JSON)")
     ap.add_argument("--replay", metavar="ITER_DIR",
                     help="re-run a committed runs/iter-N strategy offline (no API)")
     ap.add_argument("--dry-run", action="store_true",

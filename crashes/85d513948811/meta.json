@@ -1,0 +1,12 @@
+{
+  "signature": "ubsan:applying-non-zero-offset-to-null-pointer|json_parse_ex>main",
+  "sig_id": "85d513948811",
+  "count": 4,
+  "raw_len": 6,
+  "minimized_len": 3,
+  "verified": true,
+  "low_confidence": false,
+  "timed_out": false,
+  "exit_code": null,
+  "term_signal": 6
+}

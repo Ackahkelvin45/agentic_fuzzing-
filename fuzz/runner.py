@@ -6,9 +6,12 @@ Everything else (baseline strategy, agentic loop, triage) calls run_once().
 Classification rule (deliberately conservative, per the harness contract):
     exit 0                      -> VALID   (parser accepted the input)
     exit 2                      -> REJECT  (well-formed rejection; NOT a bug)
-    exit 10 / 11                -> SKIP    (harness could not test faithfully:
-                                            embedded NUL / oversized — a HARNESS
-                                            limitation, not a parser rejection)
+    exit 11                     -> SKIP    (oversized input the harness could not
+                                            test faithfully — a HARNESS limitation,
+                                            not a parser rejection. Unlike the
+                                            parson harness there is NO embedded-NUL
+                                            skip: json-parser's length-taking API
+                                            tests NUL bytes faithfully.)
     timeout (> TIMEOUT_S)       -> CRASH   (a hang is a DoS bug per the spec)
     killed by a signal          -> CRASH   (SIGSEGV/SIGABRT/...)
     ANY other exit code         -> CRASH   (sanitizer aborts, unexpected codes)
@@ -47,7 +50,7 @@ class Outcome(str, Enum):
 
 # Exit codes the harness uses for non-crash outcomes. Anything NOT in this map
 # (and not exit 0/2) is treated as a crash.
-_SKIP_CODES = {10: "embedded-nul", 11: "oversized"}
+_SKIP_CODES = {11: "oversized"}
 _ENVFAIL_CODE = 3
 
 
@@ -122,18 +125,24 @@ def harness_mode(binary: str | Path) -> str:
     return out.stdout.decode().strip()
 
 
+_REAL_TARGET_MODES = {"default", "hunt"}
+
+
 def assert_real_target(binary: str | Path) -> None:
-    """Guard: refuse to treat a non-default build as a source of real findings.
+    """Guard: refuse to treat a SYNTHETIC build as a source of real findings.
 
     Enforced, not merely intended — the positive-control build reports mode
-    'control' and is rejected here, so its synthetic crash can never be logged
-    as a parson bug.
+    'control' and is rejected here, so its injected crash can never be logged as
+    a json-parser bug. The 'hunt' build IS allowed: it is the real parser with
+    one specific UBSan check (pointer-overflow) disabled to get past json-parser's
+    known first-pass NULL-offset idiom (finding #1), so any crash it surfaces is
+    a genuine memory-safety/UB bug — re-confirmed on the 'default' build.
     """
     mode = harness_mode(binary)
-    if mode != "default":
+    if mode not in _REAL_TARGET_MODES:
         raise RuntimeError(
             f"refusing to fuzz for real findings with a '{mode}'-mode binary "
-            f"({binary}); real runs must use the default build."
+            f"({binary}); real runs must use the default or hunt build."
         )
 
 

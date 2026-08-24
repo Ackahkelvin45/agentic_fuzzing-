@@ -1,13 +1,13 @@
 {
-  "mode": "MOCK",
-  "validate_acceptance": 1.0,
+  "mode": "deepseek-chat",
+  "validate_acceptance": 0.5333333333333333,
   "summary": {
     "outcomes": {
-      "valid": 403,
-      "reject": 7
+      "valid": 222,
+      "reject": 38
     },
-    "acceptance_rate": 0.983,
-    "max_nesting_depth": 4,
+    "acceptance_rate": 0.854,
+    "max_nesting_depth": 8,
     "productions_accepted": [
       "array",
       "false",
@@ -19,47 +19,64 @@
     ],
     "productions_gap": [],
     "cap_distance_mass": 0.0,
-    "novelty": 72,
-    "divergences": 7,
+    "novelty": 16,
+    "divergences": 13,
     "divergence_examples": [
-      "b'[[true, false, -18598, \"\"], {\"g\\\\u0000\\\\u00d1\": [], \"\\\\u009d\\\\u0013\": [-9.4391823951'",
-      "b'[[], [null], [{}], {\"J\\\\ud809\\\\udfb2\": null, \"6\": \"\\\\u008f\\\\ud9d0\\\\udfb5\\\\ud8f7\\\\uddc0T'",
-      "b'[[], [null], [{}], {\"\\\\\"~\\\\ud96e\\\\udf52\\\\udaab\\\\udcb8\": null, \"6\": \"\\\\u008f\\\\ud9d0\\\\udfb'"
+      "b'-'",
+      "b'NaN'",
+      "b'{\"a\":1,}'"
     ],
-    "unique_crash_signatures": []
+    "unique_crash_signatures": [],
+    "reject_reasons_sample": [
+      [
+        "1:0: Invalid character value `u`",
+        6
+      ],
+      [
+        "1:0: Unexpected `",
+        5
+      ],
+      [
+        "1:0: Unknown value",
+        4
+      ],
+      [
+        "1:0: Expected digit after `e`",
+        4
+      ],
+      [
+        "1:0: Unexpected EOF in string",
+        3
+      ]
+    ]
   },
   "probes": {
     "unicode_escape": {
-      "parson": 1.0,
+      "target": 1.0,
       "oracle": 1.0
     },
     "big_number": {
-      "parson": 0.375,
+      "target": 1.0,
       "oracle": 1.0
     },
     "deep_nesting": {
-      "parson": 1.0,
+      "target": 1.0,
       "oracle": 1.0
     },
     "duplicate_keys": {
-      "parson": 0.0,
+      "target": 1.0,
       "oracle": 1.0
     },
     "empty_container": {
-      "parson": 1.0,
+      "target": 1.0,
       "oracle": 1.0
     },
     "near_valid_malformed": {
-      "parson": 0.286,
+      "target": 0.0,
       "oracle": 0.0
     }
   },
-  "parson_deviations": {
-    "duplicate_keys": {
-      "parson": 0.0,
-      "oracle": 1.0
-    }
-  },
+  "target_deviations": {},
   "new_crash": false,
-  "score": 107.0
+  "score": 51.0
 }

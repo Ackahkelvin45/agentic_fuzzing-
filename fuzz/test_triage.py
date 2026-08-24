@@ -40,20 +40,20 @@ def check(name, cond, extra=""):
 
 def _sig_normalization_checks() -> None:
     # UBSan variable data must NOT split one bug into many (the critic's find).
-    ub5 = b"parson.c:10:9: runtime error: index 5 out of bounds for type 'char [3]'\n    #0 0x1 in parse_x parson.c:10\n"
-    ub7 = b"parson.c:10:9: runtime error: index 7 out of bounds for type 'char [9]'\n    #0 0x1 in parse_x parson.c:10\n"
+    ub5 = b"json.c:10:9: runtime error: index 5 out of bounds for type 'char [3]'\n    #0 0x1 in parse_x json.c:10\n"
+    ub7 = b"json.c:10:9: runtime error: index 7 out of bounds for type 'char [9]'\n    #0 0x1 in parse_x json.c:10\n"
     check("UBSan index 5 vs 7 -> SAME signature",
           crash_signature(ub5) == crash_signature(ub7), crash_signature(ub5))
     sh = b"x.c:1:1: runtime error: shift exponent 32 is too large for 32-bit type\n    #0 0x1 in shl x.c:1\n"
     check("UBSan kind differs from index -> DIFFERENT signature",
           crash_signature(sh) != crash_signature(ub5))
     # interceptor top frame is skipped so the real site is the signature.
-    rep = b"ERROR: AddressSanitizer: heap-buffer-overflow\n    #0 0x1 in __asan_memcpy\n    #1 0x2 in memcpy\n    #2 0x3 in parse_string parson.c:5\n"
+    rep = b"ERROR: AddressSanitizer: heap-buffer-overflow\n    #0 0x1 in __asan_memcpy\n    #1 0x2 in memcpy\n    #2 0x3 in parse_string json.c:5\n"
     check("interceptor frames skipped -> site is parse_string",
           "parse_string" in crash_signature(rep) and "memcpy" not in crash_signature(rep),
           crash_signature(rep))
     # no app frames -> SUMMARY site used, not a blanket '?'
-    nofr = b"ERROR: AddressSanitizer: SEGV on unknown address\nSUMMARY: AddressSanitizer: SEGV parson.c:99 in parse_number\n"
+    nofr = b"ERROR: AddressSanitizer: SEGV on unknown address\nSUMMARY: AddressSanitizer: SEGV json.c:99 in parse_number\n"
     check("no-frames report falls back to SUMMARY site",
           crash_signature(nofr).endswith("parse_number"), crash_signature(nofr))
 

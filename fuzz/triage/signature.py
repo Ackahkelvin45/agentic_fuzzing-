@@ -14,7 +14,7 @@ Why a normalized signature (and the choices behind it):
   and would split one bug into many. Function-name identity is stable.
 
 - **System/runtime frames are filtered** (dyld, libclang_rt, sanitizer, start),
-  so the signature reflects the app/parson call site, not the launcher.
+  so the signature reflects the application call site, not the launcher.
 
 - **Top 3 app frames** balance specificity (distinguishing distinct bugs) vs.
   over-splitting (the same bug reached by slightly different callers).
@@ -40,7 +40,7 @@ _SUMMARY_LOC_RE = re.compile(r"SUMMARY:.*?\b([\w./-]+:\d+)")
 
 # Frames from the loader / sanitizer runtime / libc interceptors — not the bug
 # site. ASan reports often TOP with an interceptor (e.g. `__asan_memcpy` or a
-# bare `memcpy`), so we skip those to reach the real parson call site; without
+# bare `memcpy`), so we skip those to reach the real application call site; without
 # this, two different overflows sharing an interceptor+caller would merge.
 _SYSTEM_FRAMES = (
     # macOS runtime/loader

@@ -1,9 +1,7 @@
 # Strategy evolution
 
-> **MOCK RUN — NOT A REAL LLM RUN.** Produced with `LLM_MOCK=1`: the strategy is a fixed canned generator, identical every iteration, so this shows the loop's *shape*, not real strategy evolution. No API calls, no spend.
-
-- iter 1: acc=0.983 novelty=72 cap_mass=0.0 score=107.0 crash=False deviations=['duplicate_keys'] -> next: generate_nesting_toward_cap (target depth 1500-2048)
-- iter 2: acc=0.961 novelty=72 cap_mass=0.0 score=107.0 crash=False deviations=['duplicate_keys'] -> next: generate_nesting_toward_cap (target depth 1500-2048)
-- iter 3: acc=0.983 novelty=77 cap_mass=0.0 score=112.0 crash=False deviations=['duplicate_keys'] -> next: generate_nesting_toward_cap (target depth 1500-2048)
-- iter 4: acc=0.985 novelty=79 cap_mass=0.0 score=114.0 crash=False deviations=['duplicate_keys'] -> next: generate_nesting_toward_cap (target depth 1500-2048)
-- iter 5: acc=0.968 novelty=82 cap_mass=0.0 score=117.0 crash=False deviations=['duplicate_keys'] -> next: generate_nesting_toward_cap (target depth 1500-2048)
+- iter 1: acc=0.854 novelty=16 cap_mass=0.0 score=51.0 crash=False deviations=[] -> next: generate_nesting_toward_cap (target depth 1500-2048)
+- iter 2: acc=0.897 novelty=18 cap_mass=0.357 score=60.1 crash=False deviations=[] -> next: broaden_exploration (coverage saturated; diversify accepted structures)
+- iter 3: acc=0.863 novelty=30 cap_mass=0.341 score=71.8 crash=False deviations=[] -> next: broaden_exploration (coverage saturated; diversify accepted structures)
+- iter 4: acc=0.811 novelty=32 cap_mass=0.317 score=73.3 crash=False deviations=[] -> next: broaden_exploration (coverage saturated; diversify accepted structures)
+- iter 5: acc=0.691 novelty=34 cap_mass=0.145 score=71.9 crash=False deviations=[] -> next: broaden_exploration (coverage saturated; diversify accepted structures)

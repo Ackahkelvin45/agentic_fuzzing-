@@ -1,0 +1,16 @@
+# Platform-specific / rebuilt inside the container
+.venv/
+build/
+.hypothesis/
+__pycache__/
+**/__pycache__/
+*.pyc
+
+# Secrets — never copy into the image
+.env
+*.key
+
+# VCS / local noise
+.git/
+.DS_Store
+.vscode/

@@ -13,3 +13,7 @@ build/
 
 # OS
 .DS_Store
+
+# Local scaffolding / editor config — not deliverables
+HANDOFF.md
+.vscode/

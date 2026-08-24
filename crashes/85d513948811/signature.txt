@@ -1,0 +1,1 @@
+ubsan:applying-non-zero-offset-to-null-pointer|json_parse_ex>main

@@ -1,13 +1,13 @@
 {
-  "mode": "MOCK",
-  "validate_acceptance": 0.867,
+  "mode": "deepseek-chat",
+  "validate_acceptance": 0.611,
   "summary": {
     "outcomes": {
-      "valid": 397,
-      "reject": 13
+      "valid": 242,
+      "reject": 108
     },
-    "acceptance_rate": 0.968,
-    "max_nesting_depth": 5,
+    "acceptance_rate": 0.691,
+    "max_nesting_depth": 2037,
     "productions_accepted": [
       "array",
       "false",
@@ -18,48 +18,65 @@
       "true"
     ],
     "productions_gap": [],
-    "cap_distance_mass": 0.0,
-    "novelty": 82,
-    "divergences": 13,
+    "cap_distance_mass": 0.145,
+    "novelty": 34,
+    "divergences": 24,
     "divergence_examples": [
-      "b'{\"G\": {\"\\\\u00f9\\\\ud8e5\\\\ude5a\\\\uda67\\\\udc8e\\\\n\": [null, {\"u\\\\u0000q\\\\u00a5\": -1.53545031'",
-      "b'{\"G\": {\"\\\\u00f9\\\\ud8e5\\\\ude5a\\\\uda67\\\\udc8e\\\\n\": [null, {\"u\\\\u0000q\\\\u00a5\": null}, 5.59'",
-      "b'{\"G\": {\"\\\\u00f9\\\\ud8e5\\\\ude5a\\\\uda67\\\\udc8e\\\\n\": [null, {\"u\\\\u0000q\\\\u00a5\": null}, {}]}'"
+      "b'\"\\\\uDC00\"'",
+      "b'[1,2,]'",
+      "b'{\"a\":1,}'"
     ],
-    "unique_crash_signatures": []
+    "unique_crash_signatures": [],
+    "reject_reasons_sample": [
+      [
+        "1:0: Unexpected EOF in string",
+        23
+      ],
+      [
+        "1:0: Invalid character value `u`",
+        18
+      ],
+      [
+        "1:0: Unexpected `.` when seeking value",
+        9
+      ],
+      [
+        "1:0: Unexpected `0` before `1`",
+        7
+      ],
+      [
+        "1:0: Expected `:` before `\\`",
+        6
+      ]
+    ]
   },
   "probes": {
     "unicode_escape": {
-      "parson": 0.9,
+      "target": 1.0,
       "oracle": 1.0
     },
     "big_number": {
-      "parson": 0.375,
+      "target": 1.0,
       "oracle": 1.0
     },
     "deep_nesting": {
-      "parson": 1.0,
+      "target": 1.0,
       "oracle": 1.0
     },
     "duplicate_keys": {
-      "parson": 0.0,
+      "target": 1.0,
       "oracle": 1.0
     },
     "empty_container": {
-      "parson": 1.0,
+      "target": 1.0,
       "oracle": 1.0
     },
     "near_valid_malformed": {
-      "parson": 0.286,
+      "target": 0.0,
       "oracle": 0.0
     }
   },
-  "parson_deviations": {
-    "duplicate_keys": {
-      "parson": 0.0,
-      "oracle": 1.0
-    }
-  },
+  "target_deviations": {},
   "new_crash": false,
-  "score": 117.0
+  "score": 71.9
 }

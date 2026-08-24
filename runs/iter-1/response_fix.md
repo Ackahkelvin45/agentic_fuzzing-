@@ -1,5 +1,3 @@
-Here is the current Hypothesis strategy:
-
 ```python
 import json
 from hypothesis import strategies as st
@@ -173,57 +171,6 @@ def deep_nested(draw):
             result = '{"k":' + result + '}'
     return result
 
-# Generate nesting toward cap (depth 1500-2048)
-@st.composite
-def generate_nesting_toward_cap(draw):
-    depth = draw(st.integers(min_value=1500, max_value=2048))
-    # Build nested arrays/objects
-    result = 'null'
-    for _ in range(depth):
-        if draw(st.booleans()):
-            result = '[' + result + ']'
-        else:
-            result = '{"k":' + result + '}'
-    return result
-
-# New strategy for diversified accepted structures: combine multiple values in arrays/objects with varied keys
-@st.composite
-def diversified_structures(draw):
-    # Choose between a few structural patterns
-    pattern = draw(st.integers(min_value=0, max_value=3))
-    if pattern == 0:
-        # Array of mixed values
-        num_vals = draw(st.integers(min_value=1, max_value=8))
-        vals = [draw(value_strategy()) for _ in range(num_vals)]
-        return '[' + ','.join(vals) + ']'
-    elif pattern == 1:
-        # Object with multiple keys, some duplicate
-        num_pairs = draw(st.integers(min_value=1, max_value=8))
-        keys = [draw(st.one_of(string_strategy, st.just('"a"'), st.just('"b"'), st.just('"c"'))) for _ in range(num_pairs)]
-        vals = [draw(value_strategy()) for _ in range(num_pairs)]
-        pairs = [k + ':' + v for k, v in zip(keys, vals)]
-        return '{' + ','.join(pairs) + '}'
-    elif pattern == 2:
-        # Nested structure with multiple levels, not too deep
-        depth = draw(st.integers(min_value=1, max_value=4))
-        result = draw(value_strategy())
-        for _ in range(depth):
-            if draw(st.booleans()):
-                result = '[' + result + ',' + draw(value_strategy()) + ']'
-            else:
-                result = '{"k' + str(draw(st.integers(min_value=0, max_value=9))) + '":' + result + '}'
-        return result
-    else:
-        # Array of arrays/objects
-        num_vals = draw(st.integers(min_value=1, max_value=5))
-        vals = []
-        for _ in range(num_vals):
-            if draw(st.booleans()):
-                vals.append(draw(obj_strategy()))
-            else:
-                vals.append(draw(arr_strategy()))
-        return '[' + ','.join(vals) + ']'
-
 # Main strategy: combine all, bias toward objects with members
 strategy = st.one_of(
     st.lists(obj_strategy(), min_size=1, max_size=5).map(lambda x: x[0]),
@@ -231,8 +178,6 @@ strategy = st.one_of(
     st.lists(value_strategy(), min_size=1, max_size=5).map(lambda x: x[0]),
     malformed,
     deep_nested(),
-    generate_nesting_toward_cap(),
-    diversified_structures(),
     st.just('{}'),
     st.just('[]'),
     st.just('{"a":1,"a":2}'),
@@ -248,57 +193,3 @@ strategy = st.one_of(
     st.just('[[[[[{"a":1}]]]]]'),
 )
 ```
-
-Here is the summary of its last run against the parser (no coverage data is available):
-{
-  "outcomes": {
-    "valid": 302,
-    "reject": 48
-  },
-  "acceptance_rate": 0.863,
-  "max_nesting_depth": 2048,
-  "productions_accepted": [
-    "array",
-    "false",
-    "null",
-    "number",
-    "object",
-    "string",
-    "true"
-  ],
-  "productions_gap": [],
-  "cap_distance_mass": 0.341,
-  "novelty": 30,
-  "divergences": 16,
-  "divergence_examples": [
-    "b'\"\\x01\\x1f\"'",
-    "b'\"bad\\\\x\"'",
-    "b'NaN'"
-  ],
-  "unique_crash_signatures": [],
-  "reject_reasons_sample": [
-    [
-      "1:0: Invalid character value `u`",
-      9
-    ],
-    [
-      "1:0: Expected digit after `e`",
-      7
-    ],
-    [
-      "1:0: Unexpected `",
-      5
-    ],
-    [
-      "1:0: Unknown value",
-      4
-    ],
-    [
-      "1:0: Unexpected EOF in string",
-      4
-    ]
-  ]
-}
-
-Make EXACTLY ONE change to the strategy: **broaden_exploration** — coverage saturated; diversify accepted structures.
-Change nothing else. Keep it a valid Hypothesis strategy producing `str`. Return the full revised module as one ```python code block.

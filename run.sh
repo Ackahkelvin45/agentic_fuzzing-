@@ -3,7 +3,7 @@
 # run.sh — reproduce the pipeline from a clean checkout.
 #
 #   ./run.sh setup      create venv + install pinned deps
-#   ./run.sh build      compile harness (default + control + roundtrip)
+#   ./run.sh build      compile harness (default + control + hunt)
 #   ./run.sh baseline   run the naive Step-3 baseline through the harness
 #   ./run.sh check      quick crash/reject/valid classification on known inputs
 #   ./run.sh test       all four suites (harness, signal, triage, loop)
@@ -24,16 +24,18 @@ setup() {
 
 build() {
   bash harness/build.sh
-  MODE=control   bash harness/build.sh
-  MODE=roundtrip bash harness/build.sh
+  MODE=control bash harness/build.sh
+  MODE=hunt    bash harness/build.sh
 }
 
 check() {
   require_venv
   echo "[run] classification checks:"
-  printf '{"a":[1,2,3]}' | "$PY" fuzz/runner.py build/harness      # -> valid
-  printf '{"a":'         | "$PY" fuzz/runner.py build/harness      # -> reject
-  printf '"__CRASH__"'   | "$PY" fuzz/runner.py build/harness_control 2>/dev/null  # -> crash
+  # non-object inputs: on the default build any object trips finding #1 (UB) -> crash
+  printf '[1,2,3,null]' | "$PY" fuzz/runner.py build/harness      # -> valid
+  printf '[1,2'         | "$PY" fuzz/runner.py build/harness      # -> reject
+  printf '{"":0}'        | "$PY" fuzz/runner.py build/harness 2>/dev/null  # -> crash (finding #1)
+  printf '"__CRASH__"'   | "$PY" fuzz/runner.py build/harness_control 2>/dev/null  # -> crash (control)
 }
 
 require_venv() {

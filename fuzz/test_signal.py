@@ -71,6 +71,19 @@ def main() -> int:
     cur = healthy(); cur["acceptance_rate"] = 0.8; cur["novelty"] = 45
     check("healthy improvement is not reverted", decide_refinement(cur, prev=prev)[0], "broaden_exploration")
 
+    # 6b. Noise-tolerance: a within-noise novelty dip (2) + tiny acceptance
+    #     wobble must NOT trip the revert. The recorded run reverted on exactly
+    #     this kind of jitter (characterization: novelty std ~1.5).
+    prev = healthy(); prev["acceptance_rate"] = 0.44; prev["novelty"] = 20
+    cur = healthy(); cur["acceptance_rate"] = 0.46; cur["novelty"] = 18
+    check("jitter-sized drop does NOT revert (noise-tolerance)",
+          decide_refinement(cur, prev=prev)[0], "broaden_exploration")
+    # 6c. A genuine collapse (novelty -7, acceptance +0.08) still reverts.
+    prev = healthy(); prev["acceptance_rate"] = 0.40; prev["novelty"] = 27
+    cur = healthy(); cur["acceptance_rate"] = 0.48; cur["novelty"] = 20
+    check("real quiet failure still reverts",
+          decide_refinement(cur, prev=prev)[0], "revert_last_edit")
+
     # 7. Each distinct signal produced a DISTINCT action (no churn/collapse).
     actions = {
         decide_refinement(dict(healthy(), productions_gap=["array"]))[0],

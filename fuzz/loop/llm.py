@@ -18,8 +18,10 @@ The key is read from the environment only and never logged or committed.
 """
 from __future__ import annotations
 
+import http.client
 import json
 import os
+import time
 import urllib.error
 import urllib.request
 from dataclasses import dataclass
@@ -122,12 +124,32 @@ def chat(messages: list[dict], config: LLMConfig,
         },
         method="POST",
     )
-    try:
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
-            payload = json.loads(resp.read().decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        detail = e.read().decode("utf-8", "replace")[:400]
-        raise RuntimeError(f"LLM HTTP {e.code}: {detail}") from e
+    # Retry transient failures (network resets, timeouts, 5xx/429) with linear
+    # backoff so one flaky response doesn't discard a whole paid multi-iteration
+    # run — a real run died mid-way on a bare ConnectionResetError before this.
+    # A 4xx (other than 429) is a real client error and is NOT retried.
+    last_err: Exception | None = None
+    for attempt in range(4):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                payload = json.loads(resp.read().decode("utf-8"))
+            break
+        except urllib.error.HTTPError as e:
+            detail = e.read().decode("utf-8", "replace")[:400]
+            if e.code in (429, 500, 502, 503, 504) and attempt < 3:
+                last_err = RuntimeError(f"LLM HTTP {e.code}: {detail}")
+                time.sleep(2 * (attempt + 1))
+                continue
+            raise RuntimeError(f"LLM HTTP {e.code}: {detail}") from e
+        except (urllib.error.URLError, ConnectionError, TimeoutError,
+                http.client.HTTPException, OSError) as e:
+            last_err = e
+            if attempt < 3:
+                time.sleep(2 * (attempt + 1))
+                continue
+            raise RuntimeError(f"LLM network error after retries: {e}") from e
+    else:  # pragma: no cover - loop always breaks or raises
+        raise RuntimeError(f"LLM call failed: {last_err}")
 
     content = payload["choices"][0]["message"]["content"]
     usage = payload.get("usage", {})
