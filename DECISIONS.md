@@ -418,3 +418,39 @@ without over-claiming any single-run trajectory — that remains noise. The
 `eval/proxy_validation.py` audit (novelty↔branch-coverage ρ≈+0.9) independently
 supports why novelty was the right thing to steer by. Neither eval steers the
 loop; both are measurement-only, honoring the no-coverage-instrumentation rule.
+
+## D12 — The `unmask` build: hunting past finding #1 without a blind spot
+
+**Trigger.** Finding #1 aborts on every object, so the `hunt` build (global
+`-fno-sanitize=pointer-overflow`) was the only way to reach the object path — but
+it hides *any* other pointer-overflow, a documented blind spot. FINDINGS.md listed
+"surgically suppress finding #1 at just that site" as future work.
+
+**Investigation.** The obvious surgical move — `__attribute__((no_sanitize))` on
+the offending function — turns out to be **no narrower than `hunt`**: `json_parse_ex`
+is monolithic (the entire parser is one function, json.c:255–996), so a
+function-scoped suppression blinds pointer-overflow across the whole parser.
+
+**Decision.** Do it at the line, not the function. `harness/apply_unmask.py`
+rewrites *only* finding #1's two `NULL + n` sites (`chars[0] += n` and the
+`_reserved.object_mem` sibling) to integer arithmetic on the same pointer-sized
+storage (`*(size_t*)&field += n`). The stored bytes are **bit-identical**, so
+behaviour is unchanged, but the arithmetic is well-defined — so the object path
+runs clean under the **full** sanitizer set with `pointer-overflow` LIVE
+everywhere else. The pinned `vendor/` source is never touched (patched copy in
+`build/_patched/`); `assert_real_target` accepts `unmask` alongside `hunt`.
+
+**Critique applied (patch-artifact risk).** A crash on a patched binary could be a
+patch artifact rather than a real bug. Mitigation: the patch is provably
+value-preserving (integer vs pointer arithmetic over the same bytes), it is a
+2-line diff auditable in one glance, and `{""` still traps on `default` (fidelity
+confirmed). Any ASan issue it surfaced would be unrelated to the arithmetic change
+anyway.
+
+**Result — no second signature.** The evolved generator over 800 examples, a
+curated object-path adversarial set, and a first-pass memory-measurement stress
+(objects 100 000 deep, 500 000 members wide, 200 000 duplicate keys) all parse
+cleanly — no abort, no timeout. json-parser's iterative two-pass design handles
+these without overflow. So finding #1 is, within this budget, the one
+sanitizer-detectable issue on the parse-only surface — now established without the
+`hunt` build's blind spot.
