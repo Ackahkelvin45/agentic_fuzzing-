@@ -148,9 +148,14 @@ still fires, and **LeakSanitizer over 300 evolved-generator inputs reports no
 leaks** — closing the one sanitizer surface the mac build could not check.
 
 **Under-tested areas.** The **serializer** is out of scope (json-parser has none).
-The biggest gaps are the **object path behind finding #1** (a surgical
-`no_sanitize` on just that function would unmask it) and **comment mode**
-(`json_enable_comments`, left off) — both named in `crashes/FINDINGS.md`.
+The object path behind finding #1 has now been actively hunted on an **`unmask`
+build** — a line-precise, value-preserving rewrite of just finding #1's two `NULL
++ n` sites, leaving `pointer-overflow` live everywhere else (strictly better than
+the `hunt` build's global suppression, since `json_parse_ex` is monolithic). The
+evolved generator plus a deep/wide object stress (100 000-deep, 500 000-wide,
+200 000 duplicate keys) surfaced **no second signature** — a defensible null, not
+an unexplored gap. The remaining real gap is **comment mode**
+(`json_enable_comments`, left off); details in `crashes/FINDINGS.md`.
 
 ## 3. Challenges
 
@@ -183,9 +188,10 @@ Appendix B.
 **What I'd do differently with coverage feedback.** The entire proxy apparatus —
 probes, novelty guardrail, structural fingerprints — collapses into "did this
 input reach new code," and the loop would converge in far fewer iterations.
-Without it, the highest-value next steps are a stronger strategy-authoring model
-(deepseek-chat spent most of the budget on rollback/repair) and a surgical
-unmasking of the object path behind finding #1.
+Without it, the highest-value next step is a stronger strategy-authoring model
+(deepseek-chat spent most of the budget on rollback/repair); the surgical
+unmasking of the object path behind finding #1 is already done (the `unmask`
+build, §2) and found nothing further.
 
 ---
 
@@ -214,9 +220,12 @@ load-bearing: **`-fno-sanitize-recover=all`**, because UBSan is otherwise
 *recoverable* — it prints `runtime error:` and continues, so a genuine UB input
 would exit 0 and be logged as a valid parse (this exact flag surfaced finding #1);
 and **`-O0`**, so the optimizer cannot fold away the very UB we are trying to
-observe. Three build modes exist: `default` (faithful target), `control`
-(injects a synthetic bug — the positive control, refused as a source of real
-findings), and `hunt` (`default` minus the one `pointer-overflow` check).
+observe. Four build modes exist: `default` (faithful target), `control` (injects
+a synthetic bug — the positive control, refused as a source of real findings),
+`hunt` (`default` minus the one `pointer-overflow` check, globally), and `unmask`
+(a line-precise value-preserving rewrite of finding #1's two sites, full
+sanitizers, `pointer-overflow` live everywhere else — used to hunt past finding #1
+without a blind spot).
 
 ## Appendix B — Proxy-signal & dedup mechanics
 

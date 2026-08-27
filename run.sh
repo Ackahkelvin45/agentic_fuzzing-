@@ -27,6 +27,7 @@ build() {
   bash harness/build.sh
   MODE=control bash harness/build.sh
   MODE=hunt    bash harness/build.sh
+  MODE=unmask  bash harness/build.sh
 }
 
 check() {

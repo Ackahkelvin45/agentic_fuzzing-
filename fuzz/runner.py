@@ -125,7 +125,7 @@ def harness_mode(binary: str | Path) -> str:
     return out.stdout.decode().strip()
 
 
-_REAL_TARGET_MODES = {"default", "hunt"}
+_REAL_TARGET_MODES = {"default", "hunt", "unmask"}
 
 
 def assert_real_target(binary: str | Path) -> None:
@@ -133,10 +133,12 @@ def assert_real_target(binary: str | Path) -> None:
 
     Enforced, not merely intended — the positive-control build reports mode
     'control' and is rejected here, so its injected crash can never be logged as
-    a json-parser bug. The 'hunt' build IS allowed: it is the real parser with
-    one specific UBSan check (pointer-overflow) disabled to get past json-parser's
-    known first-pass NULL-offset idiom (finding #1), so any crash it surfaces is
-    a genuine memory-safety/UB bug — re-confirmed on the 'default' build.
+    a json-parser bug. The 'hunt' and 'unmask' builds ARE allowed: both are the
+    real parser with finding #1 (the known first-pass NULL-offset idiom) removed
+    so the loop can reach past it — 'hunt' by disabling the pointer-overflow check
+    globally, 'unmask' by a value-preserving integer-arithmetic rewrite of just
+    that site (pointer-overflow stays live everywhere else). Any crash either
+    surfaces is a genuine bug — re-confirmed on the 'default' build.
     """
     mode = harness_mode(binary)
     if mode not in _REAL_TARGET_MODES:
