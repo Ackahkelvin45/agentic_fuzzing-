@@ -9,28 +9,26 @@
 
 ### The problem
 
-Given a C library that parses a structured text format, find inputs that crash
-it. Random bytes mostly die in the parser's lexer/rejection paths, so the deep
-value-construction code where bugs live is rarely reached — measured, a random
-`st.text()` baseline covers **42%** of `json.c`'s lines versus **83%** for the
-evolved grammar-seeded generator (2.0×; `eval/coverage.py`). The approach here
-is to hand a **language model the format's formal grammar** and have it write a
-[Hypothesis](https://hypothesis.readthedocs.io/) strategy that generates inputs
-*in* that language, then improve that strategy across a small number of
-iterations using feedback from actual runs.
+Find inputs that crash a C library parsing a structured text format. Random
+bytes mostly die in the lexer/rejection paths, so the deep value-construction
+code where bugs live is rarely reached — a random `st.text()` baseline covers
+**42%** of `json.c` versus **83%** for the evolved grammar-seeded generator
+(2.0×; `eval/coverage.py`). The approach: hand a **language model the format's
+formal grammar**, have it write a
+[Hypothesis](https://hypothesis.readthedocs.io/) strategy generating inputs *in*
+that language, and refine it across a few feedback-driven iterations.
 
-*(On target choice: the exercise began against `parson`, but its latest release
-is heavily hardened and yielded nothing; the instructor confirmed a recent
-commit of any listed library was acceptable, so the target is json-parser — a
-different C JSON library that exposes a real bug. See §3.)*
+*(Target choice: parson's latest release is hardened and yielded nothing; with
+the instructor's confirmation that any listed library at a recent commit was
+acceptable, the target is json-parser. See DECISIONS.md D10.)*
 
 ### Grammar and its adaptations
 
-The starting point is the JSON grammar from ANTLR's `grammars-v4` repository,
-used verbatim (`grammar/JSON.g4`). The interesting engineering is the **gap
-between the formal grammar and what json-parser actually accepts**, since
-generating to the spec alone wastes budget on inputs the library treats
-differently. These were confirmed empirically (`grammar/adaptation-notes.md`):
+The starting point is ANTLR `grammars-v4`'s JSON grammar, used verbatim
+(`grammar/JSON.g4`). The interesting engineering is the **gap between the formal
+grammar and what json-parser actually accepts** — generating to the spec alone
+wastes budget on inputs the library treats differently. Confirmed empirically
+(`grammar/adaptation-notes.md`):
 
 | Deviation | Direction |
 |---|---|
@@ -53,30 +51,22 @@ make; none of the above trips a sanitizer.
 ### Harness: crash vs. rejection vs. valid parse
 
 A ~90-line C driver (`harness/harness.c`) reads stdin, calls
-`json_parse_ex(&settings, buf, len, error)`, frees the result, and communicates
-the outcome purely through its exit code:
-
-- **0** — accepted as valid JSON
-- **2** — well-formed rejection (**not a bug**); json-parser's own error string
-  is surfaced on stderr, a "why was this rejected" signal the earlier target
-  did not provide
-- **11** — SKIP: oversized input the harness declined to test (its own bucket, so
-  "rejection" in the logs always means the *parser* rejected something). Unlike
-  the parson harness there is **no NUL skip** — the length API tests NUL faithfully.
-- anything else, any fatal signal, or a >5 s timeout — **crash**
-
-`fuzz/runner.py` is the single place this is decided, and it treats *anything
-outside the known set* as a crash, so a sanitizer exit convention cannot be
-silently misread as a clean parse. Timeouts count as crashes: a parser frozen by
-crafted input is a denial-of-service bug.
+`json_parse_ex(&settings, buf, len, error)`, frees the result, and signals the
+outcome purely through its exit code: **0** = valid; **2** = well-formed
+rejection (**not a bug**; json-parser's error string goes to stderr, a "why
+rejected" signal); **11** = SKIP (oversized — its own bucket, so "reject" always
+means the *parser* rejected, and unlike the parson harness there is **no NUL
+skip**: the length API tests NUL faithfully); anything else, any fatal signal, or
+a >5 s timeout = **crash**. `fuzz/runner.py` decides this in one place and treats
+*anything outside the known set* as a crash, so no sanitizer exit convention is
+misread as a clean parse. Timeouts count as crashes (a hang is a DoS bug).
 
 The build (`harness/build.sh`) uses `-fsanitize=address,undefined
 -fno-sanitize-recover=all -fno-omit-frame-pointer -g -O0`. Two flags are
-load-bearing: **`-fno-sanitize-recover=all`**, because UBSan is otherwise
-*recoverable* — it prints `runtime error:` and continues, so a genuine UB input
-would exit 0 and be logged as a valid parse (this exact flag is what surfaced the
-finding below); and **`-O0`**, so the optimizer cannot fold away the very UB we
-are trying to observe.
+load-bearing: **`-fno-sanitize-recover=all`** (UBSan is otherwise *recoverable* —
+it prints `runtime error:` and continues, so a genuine UB input would exit 0 and
+log as valid; this exact flag surfaced the finding below), and **`-O0`** (so the
+optimizer cannot fold away the UB we are trying to observe).
 
 ### The feedback loop, and the signal that steers it
 
@@ -104,10 +94,24 @@ raise acceptance by generating *blander* JSON, retreating from edge cases;
 acceptance rising while accepted-structure diversity falls is that fingerprint,
 and it triggers a rollback (guarded by a noise-tolerance margin, since diversity
 has run-to-run variance — see §3). A **differential oracle** (`fuzz/oracle.py`)
-runs every iteration as a *findings* channel: inputs json-parser accepts that
-strict `json` rejects are candidate leniencies — it flagged 24 such divergences
-in the final iteration, automatically surfacing the trailing-comma and
-duplicate-key behaviors above.
+runs every iteration as a *findings* channel: inputs json-parser accepts that a
+strict RFC parser rejects are candidate leniencies — it flagged 24 divergences in
+the committed final iteration, surfacing the **trailing-comma** leniency (and
+unpaired-surrogate handling). Two care points: the reference is now forced
+RFC-strict on finiteness, since Python's `json` otherwise accepts
+`NaN`/`Infinity`/`1e309` — with that fix the oracle also catches the
+**non-finite-number** (`1e309`→inf) leniency, which the committed run's lenient
+oracle missed; and **duplicate keys come from the probes, not the oracle**, since
+Python accepts them too.
+
+**Was the blind signal any good?** A post-hoc audit (`eval/proxy_validation.py`,
+measurement-only, n=5) correlates each proxy component with the coverage the loop
+could not see: accepted-structure **novelty tracks branch coverage** (Spearman
+ρ≈+0.9) and raw **acceptance is negatively correlated** (ρ≈−0.7) — the novelty
+guardrail steers by the right quantity, and acceptance alone would mislead,
+exactly as designed. Honestly, **deep-nesting mass does *not* buy coverage**
+(ρ≈−0.5): re-entering the same object/array code adds no new branches, a real
+limit of that steer.
 
 ## 2. Findings
 

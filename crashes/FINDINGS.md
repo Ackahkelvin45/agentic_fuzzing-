@@ -49,7 +49,9 @@ disables **only** the `pointer-overflow` check (documented judgment call in
 Against that build:
 
 - **The agentic loop** (5 iterations, `runs/`) produced a working generator that
-  ran hundreds of valid/malformed inputs across a clean 5-iteration evolution — **no new crash signature**.
+  ran hundreds of valid/malformed inputs over the committed run — **no new crash
+  signature** (the per-iteration score trajectory is within measurement noise;
+  see report §2, but the crash-hunt null result does not depend on it).
 - **Direct adversarial probing** (numbers with huge magnitude/exponent and
   thousands of digits; embedded NUL and control bytes; lone / leading-`+` /
   leading-dot number forms; lone and paired unicode surrogates; single and double
