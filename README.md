@@ -53,6 +53,7 @@ fuzz/
 runs/              per-iteration evidence from the committed live run (deepseek-chat)
 crashes/           FINDINGS.md (results) + one folder per unique crash signature
 eval/              coverage.py — MEASUREMENT-ONLY line coverage (random vs evolved)
+  proxy_validation.py  post-hoc audit: does the blind proxy signal track coverage?
 docs/              report.md (the two-page write-up)
 DECISIONS.md       decision + critique log
 ```
