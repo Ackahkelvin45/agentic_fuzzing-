@@ -868,6 +868,15 @@ def run_live(harness: Path, max_examples: int) -> int:
                 evolution.append(f"iter {it}: gated at acc={acc0:.2f}; full run skipped")
                 continue
 
+        # Provenance: build_strategy wrote the PRE-repair code to strategy.py, but
+        # after an adopted repair the EFFECTIVE strategy is `code` (== code2). Keep
+        # strategy.py canonical (= what actually ran) so `--replay runs/iter-N`
+        # loads a runnable generator; preserve the original as strategy_orig.py.
+        _on_disk = (idir / "strategy.py").read_text()
+        if code.strip() != _on_disk.strip():
+            (idir / "strategy_orig.py").write_text(_on_disk)
+            (idir / "strategy.py").write_text(code)
+
         # --- full run (F1: run_strategy may raise GeneratorError) ---
         try:
             samples, divergences, crash_inputs, reject_reasons = run_strategy(
@@ -977,8 +986,39 @@ def run_live(harness: Path, max_examples: int) -> int:
 
 # --- offline replay (REAL) ------------------------------------------------
 
+def _replay_strategy_path(iter_dir: Path) -> Path:
+    """Pick the strategy file to replay. Canonical is strategy.py (the writer now
+    keeps it == what actually ran). For older committed runs whose strategy.py is
+    a PRE-repair artifact that no longer loads/runs, fall back to strategy_fix.py
+    (the repaired code that was actually used that iteration) with a printed note.
+    """
+    canonical = iter_dir / "strategy.py"
+    fix = iter_dir / "strategy_fix.py"
+    if not fix.exists():
+        return canonical
+    try:
+        strat = load_strategy(canonical)
+        # A strategy can import fine yet raise on first draw; probe one example.
+        _ensure_fuzz_on_path()
+        from hypothesis import given, settings, HealthCheck
+        ok = [False]
+
+        @settings(max_examples=1, deadline=None, database=None,
+                  suppress_health_check=[HealthCheck.function_scoped_fixture])
+        @given(s=strat)
+        def _probe(s):
+            ok[0] = True
+
+        _probe()
+        return canonical
+    except Exception:  # noqa: BLE001 - canonical is broken; use the repaired file
+        print(f"[replay] {iter_dir.name}: strategy.py did not run; "
+              f"using strategy_fix.py (the repaired code used that iteration)")
+        return fix
+
+
 def run_replay(harness: Path, iter_dir: Path, max_examples: int) -> int:
-    strategy = load_strategy(iter_dir / "strategy.py")
+    strategy = load_strategy(_replay_strategy_path(iter_dir))
     samples, divergences, _, rr = run_strategy(harness, strategy, max_examples)
     print(f"[replay] {iter_dir.name}: {json.dumps(summarize(samples, divergences, reject_reasons=rr))}")
     return 0
