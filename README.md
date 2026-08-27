@@ -54,6 +54,7 @@ runs/              per-iteration evidence from the committed live run (deepseek-
 crashes/           FINDINGS.md (results) + one folder per unique crash signature
 eval/              coverage.py — MEASUREMENT-ONLY line coverage (random vs evolved)
   proxy_validation.py  post-hoc audit: does the blind proxy signal track coverage?
+  experiment.py    multi-seed A/B/C controlled experiment (mean±CI + permutation test)
 docs/              report.md (the two-page write-up)
 DECISIONS.md       decision + critique log
 ```
@@ -117,6 +118,11 @@ build cannot be mistaken for the real target. `./run.sh test` runs four suites
       finding #1, not only the control; auto-triages to `crashes/<id>/`.
 - [x] Two-page report (Step 6) — `docs/report.md`; findings in `crashes/FINDINGS.md`.
 - [x] **A confirmed finding** — UBSan UB on any object, minimized to `{""`.
+- [x] **Refinement shown to help, measured** — a 12-seed controlled experiment
+      (`eval/experiment.py`): grammar-seeding beats random by **+34.5 region-cov
+      pts** and refinement adds a further **+2.6** (paired p<0.02, 95% CIs exclude
+      zero). The blind proxy signal is validated against coverage
+      (`eval/proxy_validation.py`: novelty↔branch-cov ρ≈+0.9). Both measurement-only.
 
 ## Known limitations
 
