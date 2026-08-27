@@ -106,21 +106,34 @@ inputs → 1 signature), shrunk by Hypothesis from `{"":0}` to `{""`, and verifi
 and is committed under `crashes/` with a runnable `repro.sh` (mechanism in
 `crashes/FINDINGS.md`).
 
-**How the strategy evolved, and an honest note on variance.** Because finding #1
-aborts on *every* object, a `hunt` build disables **only** the `pointer-overflow`
-check (a documented triage trade-off; §3) so the loop can reach deeper. The
-committed 5-iteration run (`runs/`, deepseek-chat, $0.024) reads as a clean
-evolution — score 51 → 60 → 72 → 73 → 72 as it closed a production-coverage gap,
-pushed nesting into the deep band (cap-mass 0.0 → 0.36 exactly when that steer
-fired), and broadened diversity (novelty 16 → 34), with json-parser's own reject
-reasons fed back into the refine prompts. **But this is a favorable draw.** Across
-the live runs I observed, the count of iterations producing a *working* strategy
-ranged from **0 to 5** (one run rolled back four of five on model-authored
-Hypothesis-API bugs; another produced zero). Replaying the identical committed
-strategies unseeded spreads the per-iteration scores by ±7–11 points, so I do
-**not** claim any specific trajectory or measurable per-iteration *improvement* —
-the spread is the real result. What *is* dependable is the loop's rollback/repair
-**machinery**, not `deepseek-chat`'s per-run luck.
+**How the strategy evolved — measured, not asserted.** Because finding #1 aborts
+on *every* object, a `hunt` build disables **only** the `pointer-overflow` check
+(§3) so the loop can reach deeper. Rather than rest on the single committed run —
+whose 51 → 72 score trajectory does **not** reproduce (one draw of a ±7–11-point
+noisy signal; §3) — the improvement is measured as a controlled experiment
+(`eval/experiment.py`): three fixed generators — random baseline, the grammar
+**seed** alone (iter-1, no refinement), and the **evolved** generator (iter-5) —
+each run over **12 independent seeds**, reported as mean ± 95% CI with a paired
+sign-flip permutation test. Two findings:
+
+- **Grammar-seeding is the dominant win.** The seed reaches **+34.5 region- and
+  +37.8 branch-coverage points** over random text (23% → 61% branch; paired
+  p<0.001) — the core premise (generating *in* the language reaches the
+  value-construction code random bytes miss) holds decisively.
+- **Refinement adds a small but statistically significant increment beyond the
+  seed:** **+2.6 region, +2.5 branch, +3.4 novelty** (every 95% CI excludes zero;
+  paired p<0.02). The evolved generator also reaches deep nesting the seed never
+  did (cap-mass 0 → 0.19) and *trades* raw acceptance (0.75 → 0.61) for that
+  diversity — precisely the behaviour the novelty guardrail exists to protect.
+
+So the defensible claim is: **seeding does most of the work, and the feedback loop
+measurably — if modestly — improves on it** once seed-noise is averaged out. What
+is still **not** claimed is any specific per-iteration trajectory from one run:
+that stays within noise (§3), and across live runs the count of iterations
+producing a *working* strategy ranged **0–5** (`deepseek-chat` is a high-variance
+strategy author), so the committed run is a favorable draw kept for exhibiting the
+loop's directed edits and reject-reason feedback — the dependable part is the
+loop's rollback/repair **machinery**, not any single run's luck.
 
 **Crashes beyond finding #1: none found, and why that's interpretable.** Neither
 the loop nor direct adversarial probing (huge/edge numbers, NUL and control bytes,

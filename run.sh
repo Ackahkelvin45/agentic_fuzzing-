@@ -7,6 +7,7 @@
 #   ./run.sh baseline   run the naive Step-3 baseline through the harness
 #   ./run.sh check      quick crash/reject/valid classification on known inputs
 #   ./run.sh test       all four suites (harness, signal, triage, loop)
+#   ./run.sh eval       measurement-only: coverage + proxy-validation + experiment
 #   ./run.sh all        setup + build + test + baseline   (default)
 #
 # The agentic loop (Step 4) is driven separately via fuzz/loop/agent.py.
@@ -52,6 +53,15 @@ test_all() {
 
 baseline() { require_venv; "$PY" fuzz/baseline_strategy.py build/harness 300; }
 
+# Measurement-only evaluation (NOT loop steering): the coverage comparison, the
+# proxy-signal-vs-coverage correlation, and the multi-seed controlled experiment.
+eval_all() {
+  require_venv
+  "$PY" eval/coverage.py           # random vs evolved line coverage
+  "$PY" eval/proxy_validation.py   # does the blind proxy signal track coverage?
+  "$PY" eval/experiment.py         # multi-seed A/B/C experiment with CIs + perm test
+}
+
 cmd="${1:-all}"
 case "$cmd" in
   setup) setup ;;
@@ -59,6 +69,7 @@ case "$cmd" in
   check) check ;;
   test) test_all ;;
   baseline) baseline ;;
+  eval) eval_all ;;
   all) setup; build; test_all; baseline ;;
-  *) echo "usage: $0 {setup|build|check|test|baseline|all}" >&2; exit 1 ;;
+  *) echo "usage: $0 {setup|build|check|test|baseline|eval|all}" >&2; exit 1 ;;
 esac
