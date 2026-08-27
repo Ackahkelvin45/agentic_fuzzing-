@@ -70,6 +70,12 @@ DECISIONS.md       decision + critique log
 - **`build/harness_hunt`** (`hunt`) — full sanitizers **minus** the one
   `pointer-overflow` check that finding #1 trips, so the loop can parse objects
   and hunt for *deeper* bugs. Documented triage trade-off (see `DECISIONS.md`).
+- **`build/harness_unmask`** (`unmask`) — strictly better than `hunt`: a
+  line-precise, value-preserving patch (`harness/apply_unmask.py`) rewrites only
+  finding #1's two `NULL+n` sites to integer arithmetic, then compiles with the
+  **full** sanitizer set so `pointer-overflow` stays live everywhere else. Used to
+  hunt a second object-path signature without a blind spot — none found. The
+  pinned `vendor/` source is never modified.
 
 ## Running the agentic loop (Step 4)
 

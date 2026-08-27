@@ -43,10 +43,22 @@ it. It is **not** a memory-safety exploit; it is a real, reachable UB.
 ## Hunting past finding #1 — what else is (not) there
 
 Because finding #1 fires on essentially every object, it masks the rest of the
-object path under the full-sanitizer build. To reach deeper, the `hunt` build
-disables **only** the `pointer-overflow` check (documented judgment call in
-`harness/build.sh` and `DECISIONS.md`); every other ASan/UBSan check stays live.
-Against that build:
+object path under the full-sanitizer build. Two builds reach past it. The `hunt`
+build disables **only** the `pointer-overflow` check globally (documented judgment
+call in `harness/build.sh` and `DECISIONS.md`). The **`unmask`** build is strictly
+better: `harness/apply_unmask.py` rewrites *only* finding #1's two `NULL + n` sites
+to integer arithmetic on the same pointer-sized storage — value-identical, so
+behaviour is unchanged — and then compiles with the **full** sanitizer set, so
+`pointer-overflow` stays **live everywhere else** and a *different* object-path
+pointer-overflow would still be caught (the pinned `vendor/` source is never
+modified; `{""` still traps on `default`, confirming fidelity). Against these
+builds:
+
+- **The unmask build (pointer-overflow live): no second signature.** The evolved
+  generator over 800 examples, a curated object-path adversarial set, and a
+  first-pass memory-measurement stress (objects nested 100 000 deep, 500 000
+  members wide, 200 000 duplicate keys) all parse cleanly — no ASan/UBSan abort,
+  no timeout. This closes the `hunt` build's one blind spot.
 
 - **The agentic loop** (5 iterations, `runs/`) produced a working generator that
   ran hundreds of valid/malformed inputs over the committed run — **no new crash
@@ -94,10 +106,11 @@ and are deliberately not reported as such — none trips a sanitizer.
 
 ## What I'd try next with more time
 
-- A build that surgically suppresses finding #1 at *just* line 437/447 (via
-  `__attribute__((no_sanitize))` on that function) rather than the whole
-  `pointer-overflow` check, to hunt the object path without the collateral blind
-  spot the `hunt` build accepts.
+- **Done — surgical unmask of the object path.** The `unmask` build above already
+  does this (a line-precise, value-preserving rewrite rather than a whole-check
+  suppression, since `json_parse_ex` is monolithic so a function-scoped
+  `no_sanitize` would be no narrower than `hunt`). Result: no second signature.
+  The remaining lever here is simply more budget/inputs against that clean build.
 - json-parser with `json_enable_comments` on — a second accepted-format surface
   our harness currently leaves off.
 - A stronger model for the loop: `deepseek-chat` frequently emitted
