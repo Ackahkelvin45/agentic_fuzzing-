@@ -375,3 +375,46 @@ justified then. json-parser's `json_parse_ex` *does* return an error, so both ar
 now wired: the harness surfaces it on stderr, `run_strategy` logs it per input,
 and `summarize` feeds the top reject reasons back to the model (visible in the
 committed refine prompts).
+
+## D11 — From an anecdotal run to a measured claim: the multi-seed experiment
+
+**Trigger.** D9 established that the single committed run's 51→72 "evolution" is
+max-of-noise: replaying the identical strategies unseeded spread scores ±7–11 pts,
+so no per-iteration *improvement* could be honestly claimed. That left the
+assignment's graded core (Step 4.5–4.6, "the loop improves the generator") only
+partially demonstrated — the loop authored valid strategies and made directed
+edits, but whether refinement *helped* was unproven.
+
+**Decision.** Rather than re-run the live loop and gamble on another favorable
+draw, settle the question with a controlled experiment on *fixed* generators
+(`eval/experiment.py`). Three conditions — random baseline, the grammar **seed**
+(iter-1, no refinement), the **evolved** generator (iter-5) — each measured over
+**K=12 independent PRNG seeds** at N=150 examples. One pass over the coverage
+build yields region/line/branch coverage AND acceptance/novelty/cap-mass on the
+same inputs. This is a **randomized block design** (every seed run under every
+condition), so the correct test is **paired**: a sign-flip permutation test on the
+per-seed differences, enumerated **exactly** (2¹²=4096 relabelings). Report
+mean ± 95% CI and the paired-difference CI (the right CI for a comparison, not the
+marginal-CI overlap).
+
+**Critique applied (statistics).** The first cut used an *unpaired* permutation
+test — wrong for this design, and it ignores the seed as a blocking variable,
+losing power and mis-estimating the null. Switched to the paired sign-flip test;
+it is both more correct and more powerful, and at K=12 it is exact, not sampled.
+
+**Result.**
+- **Seeding (B vs A):** +34.5 region / +37.8 branch / +14.0 novelty, paired
+  p≈0.0005 — the core premise holds decisively.
+- **Refinement beyond seeding (C vs B):** +2.6 region / +2.5 branch / +3.4
+  novelty, **every 95% CI excludes zero**, paired p<0.02. Small but real. The
+  evolved generator also reaches deep nesting the seed never did (cap-mass
+  0→0.19) and trades raw acceptance (0.75→0.61) for diversity — the guardrail's
+  intended behaviour.
+
+**What is now claimed (vs D9).** D9 could claim only: gets off 0%, authors valid
+strategies, lands one directed edit. D11 adds a *measured, distribution-backed*
+claim that **refinement improves on the grammar seed** (modestly, significantly),
+without over-claiming any single-run trajectory — that remains noise. The
+`eval/proxy_validation.py` audit (novelty↔branch-coverage ρ≈+0.9) independently
+supports why novelty was the right thing to steer by. Neither eval steers the
+loop; both are measurement-only, honoring the no-coverage-instrumentation rule.
